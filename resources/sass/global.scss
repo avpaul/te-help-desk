@@ -1,0 +1,58 @@
+$primary-color: #003e6b;
+$accent-color-light: #f0f4f8;
+
+html {
+    font-family: 'Lato', sans-serif;
+    background-color: #fefefe;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.text-primary {
+    color: $primary-color !important;
+}
+
+.text-danger {
+    color: #ba2525;
+}
+
+.bg-primary {
+    background-color: $primary-color !important;
+}
+
+.content-wrapper {
+    margin-left: 64px;
+    margin-right: 64px;
+}
+
+#app {
+    & > .row {
+        margin-bottom: 0;
+        height: calc(100% - 64px);
+        overflow: hidden;
+    }
+}
+
+nav {
+    padding-left: 64px;
+    padding-right: 64px;
+    & > div {
+        border-bottom: 1px $accent-color-light solid;
+    }
+}
+
+.input-field {
+    input {
+        &:focus {
+            border-bottom-color: $primary-color !important;
+            box-shadow: 0 1px 0 0 $primary-color !important;
+
+            & + label {
+                color: $primary-color !important;
+            }
+        }
+    }
+}

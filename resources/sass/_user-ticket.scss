@@ -1,0 +1,327 @@
+.user-pages-ticket {
+    height: calc(100% - 22px);
+    .user-tickets-wrapper,
+    .user-single-ticket-wrapper {
+        height: 100%;
+        margin-top: 16px;
+        background-color: $accent-color-light;
+        border-radius: 6px;
+    }
+
+    .user-tickets-wrapper {
+        padding: 16px;
+        margin-left: 40px !important;
+    }
+
+    .user-single-ticket-wrapper {
+        position: relative;
+        padding: 16px 32px;
+        margin-left: 32px !important;
+        margin-right: 24px;
+    }
+
+    .user-ticket-group {
+    }
+
+    .user-ticket-snap {
+        display: block;
+        padding: 8px;
+        margin: 16px 0;
+        background-color: #ffffff;
+        color: #3b3b3b;
+        border-radius: 2px;
+        cursor: pointer;
+        text-decoration: none;
+        box-shadow: none;
+        transition: box-shadow ease-out 0.2s;
+
+        &.active {
+            border-bottom: 4px solid $primary-color;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        &:hover {
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                0 3px 1px -2px rgba(0, 0, 0, 0.12),
+                0 1px 5px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .user-ticket-snap-footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .time {
+            font-size: 14px;
+            text-transform: capitalize;
+            color: #829ab1;
+            line-height: 16px;
+        }
+
+        .status {
+            width: 8px;
+            height: 8px;
+            margin: 8px;
+            border-radius: 50%;
+
+            &.active {
+                background-color: #199473;
+            }
+
+            &.pending {
+                background-color: #f0b429;
+            }
+
+            &.closed {
+                background-color: #ba2525;
+            }
+        }
+    }
+
+    .user-single-ticket {
+        height: calc(100% - 16px);
+        padding: 16px;
+        background-color: #ffffff;
+        border-radius: 2px;
+
+        .user-ticket-header {
+            color: #102a43;
+            padding-top: 8px;
+            padding-bottom: 16px;
+            .title {
+                margin: 0;
+            }
+
+            .ticket-meta {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                .ticket-date {
+                    margin: 8px 0;
+                    color: #829ab1;
+                }
+
+                .ticket-conversations-count {
+                    position: relative;
+                    padding: 0 16px;
+                    color: #3b3b3b;
+                }
+                .ticket-status {
+                    padding: 4px 8px;
+                    text-transform: capitalize;
+                    border-radius: 4px;
+
+                    &.active {
+                        color: #199473;
+                    }
+
+                    &.pending {
+                        color: #f0b429;
+                    }
+
+                    &.closed {
+                        color: #ba2525;
+                    }
+                }
+            }
+        }
+    }
+    .user-ticket-conversations-shadow-top {
+        position: sticky;
+        left: 0;
+        height: 4px;
+        margin-bottom: -4px;
+        z-index: 80;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14) inset;
+    }
+
+    .user-ticket-conversations {
+        padding: 0 8px 16px;
+        height: calc(100% - 120px);
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            margin-left: 8px;
+            width: 8px;
+            background-color: transparent;
+            border-radius: 5px;
+
+            &-thumb {
+                background-color: #cbd2d9;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    .user-ticket-conversation {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-end;
+        margin-bottom: 16px;
+
+        .conversation-owner {
+            height: 48px;
+            width: 48px;
+            margin-right: 16px;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+            }
+            .user-initials {
+                height: 100%;
+                width: 100%;
+                text-transform: uppercase;
+                text-align: center;
+                font-size: 24px;
+                line-height: 48px;
+                border-radius: 50%;
+                background-color: $accent-color-light;
+            }
+        }
+
+        .conversation-content {
+            padding: 16px;
+            max-width: 500px;
+            font-size: 18px;
+            color: #3b3b3b;
+            background-color: #f0f4f8;
+            border-radius: 16px;
+            border-bottom-left-radius: 0;
+        }
+
+        &.user {
+        }
+
+        &.desk {
+            flex-direction: row-reverse;
+
+            .conversation-owner {
+                margin-left: 16px;
+                margin-right: 0;
+            }
+            .conversation-content {
+                border-bottom-left-radius: 16px;
+                border-bottom-right-radius: 0;
+            }
+        }
+    }
+
+    .ticket-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+
+        .btn {
+            text-transform: uppercase;
+            color: $primary-color;
+            &:hover {
+                background-color: $accent-color-light;
+            }
+            i {
+                font-size: 14px;
+                width: 14px;
+            }
+            span {
+                display: inline-block;
+                min-width: 60px;
+                text-align: left;
+            }
+            &.btn-delete,
+            &.btn-close {
+                color: #ba2525;
+                &:hover {
+                    background-color: #ffeeee;
+                }
+            }
+
+            &.btn-reply {
+                color: #199473;
+                &:hover {
+                    background-color: #c6f7e2;
+                }
+            }
+        }
+    }
+
+    .ticket-reply {
+        display: none;
+        position: absolute;
+        bottom: 32px;
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        border-radius: 2px;
+        box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14),
+            0 9px 46px 8px rgba(0, 0, 0, 0.12),
+            0 11px 15px -7px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+
+        &.active {
+            display: block;
+        }
+
+        .ticket-reply-editor {
+            padding: 16px;
+            font-size: 18px;
+            height: 154px;
+            color: #3b3b3b;
+            overflow: scroll;
+            border-bottom: 2px solid $accent-color-light;
+
+            &:focus {
+                outline: none;
+            }
+
+            &:empty::before {
+                content: attr(placeholder);
+                color: #cbd2d9;
+            }
+            &::-webkit-scrollbar {
+                margin-left: 8px;
+                width: 8px;
+                background-color: transparent;
+                border-radius: 5px;
+
+                &-thumb {
+                    background-color: #cbd2d9;
+                    border-radius: 5px;
+                }
+            }
+        }
+
+        .ticket-reply-footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+
+            .btn {
+                margin: 8px;
+                text-transform: uppercase;
+                color: $primary-color;
+                background-color: $accent-color-light;
+
+                i {
+                    font-size: 14px;
+                    width: 14px;
+                }
+                span {
+                    display: inline-block;
+                    min-width: 60px;
+                    text-align: left;
+                }
+                &.btn-delete {
+                    color: #ba2525;
+                    background-color: #ffeeee;
+                }
+            }
+        }
+    }
+}

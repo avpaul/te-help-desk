@@ -11,6 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/user', function () {
+    return view('user');
+});
+
+Route::get('/tickets/{id}', function () {
+    return view('user-ticket');
+});
+
+Route::get('/desk', function () {
+    return view('desk');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/signup', function () {
+    return view('signup');
+});
+
+Route::get('/reset-password', function () {
+    return view('reset');
 });
