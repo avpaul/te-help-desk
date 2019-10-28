@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/user', function () {
-    return view('user');
+Route::get('/', function () {
+    return view('home');
 });
 
 Route::get('/tickets/{id}', function () {
@@ -21,6 +21,10 @@ Route::get('/tickets/{id}', function () {
 
 Route::get('/desk', function () {
     return view('desk');
+});
+
+Route::get('/user', function () {
+    return view('user');
 });
 
 Route::get('/login', function () {

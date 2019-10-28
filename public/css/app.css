@@ -118,6 +118,19 @@ nav > div {
   margin: 16px 64px;
 }
 
+.app-auth-pages .login-form .login-form-wrapper .message {
+  display: block;
+  text-align: right;
+}
+
+.app-auth-pages .login-form .login-form-wrapper .message.message-error {
+  color: #ba2525;
+}
+
+.app-auth-pages .login-form .login-form-wrapper .message.message-success {
+  color: #3f9142;
+}
+
 .app-auth-pages .login-form-header {
   font-family: "Lato", sans-serif;
   font-weight: 400;
@@ -182,6 +195,7 @@ nav > div {
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
+  background-color: #f0f4f8;
 }
 
 .user-pages .user-profile:hover {
@@ -219,6 +233,7 @@ nav > div {
 }
 
 .user-pages-home .user-tickets-wrapper {
+  min-height: 100%;
   padding: 16px 32px;
   margin-top: 16px;
   background-color: #f0f4f8;
@@ -767,7 +782,6 @@ nav > div {
   margin-left: 8px;
   width: 8px;
   background-color: transparent;
-  border-radius: 5px;
 }
 
 .user-pages-ticket .ticket-reply .ticket-reply-editor::-webkit-scrollbar-thumb {
@@ -825,6 +839,7 @@ nav > div {
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
+  background-color: #f0f4f8;
 }
 
 .desk-pages .user-profile:hover {

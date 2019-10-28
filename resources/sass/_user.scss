@@ -19,6 +19,7 @@
         border-radius: 50%;
         overflow: hidden;
         cursor: pointer;
+        background-color: $accent-color-light;
 
         &:hover {
             box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14),
@@ -60,6 +61,7 @@
 
 .user-pages-home {
     .user-tickets-wrapper {
+        min-height: 100%;
         padding: 16px 32px;
         margin-top: 16px;
         background-color: $accent-color-light;

@@ -62,6 +62,17 @@
 
         .login-form-wrapper {
             margin: 16px 64px;
+
+            .message {
+                display: block;
+                text-align: right;
+                &.message-error {
+                    color: #ba2525;
+                }
+                &.message-success {
+                    color: #3f9142;
+                }
+            }
         }
     }
 

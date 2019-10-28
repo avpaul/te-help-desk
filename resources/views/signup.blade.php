@@ -42,23 +42,26 @@
             <h3 class="login-form-header"><span>Hey!</span> <span class="h4">nice to have you</span> </h3>
             <div class="input-field-wrapper">
                 <div class="input-field">
-                <input type="text" id="user-email">
+                <input type="text" class="user-email">
                 <label for="user-email">Your Email</label>
             </div>
 
             <div class="input-field">
-                <input type="password" id="user-password">
+                <input type="password" class="user-password">
                 <label for="user-password">Your Password</label>
             </div>
             </div>
             
+            <div class="row">
+                <span class="message"></span>
+            </div>
 
             <div class="row">
                 <a href="/login" class="right password-reset-link">Have an account?</a>
             </div>
 
             <div class="row">
-                <button class="btn btn-login right">signup</button>
+                <button class="btn btn-signup right">signup</button>
             </div>
         </div>
     </div>

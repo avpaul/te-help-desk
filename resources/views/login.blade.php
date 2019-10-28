@@ -60,15 +60,19 @@
                         </h3>
                         <div class="input-field-wrapper">
                             <div class="input-field">
-                                <input type="text" id="user-email" />
+                                <input type="text" class="user-email" />
                                 <label for="user-email">Your Email</label>
                             </div>
 
                             <div class="input-field">
-                                <input type="password" id="user-password" />
+                                <input type="password" class="user-password" />
                                 <label for="user-password">Your Password</label>
                             </div>
                         </div>
+
+                        <div class="row">
+                <span class="message"></span>
+            </div>
 
                         <div class="row">
                             <a
