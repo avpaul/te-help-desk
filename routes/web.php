@@ -11,6 +11,8 @@
 |
 */
 
+use App\Mail\VerifyUserEmail;
+
 Route::get('/', 'HomeController@index');
 
 Route::get('/tickets','TicketController@index');
@@ -38,6 +40,7 @@ Route::get('/reset-password', function () {
     return view('reset');
 });
 
+Route::get('/verify-email', 'UserController@verifyEmail');
 
 Route::get('/desk', function () {
     return view('desk');
@@ -45,4 +48,10 @@ Route::get('/desk', function () {
 
 Route::get('/user', function () {
     return view('user');
+});
+
+Route::get('/mailable', function()
+{
+    $details = ['user' => 'http://localhost:8000/verify-email', 'ticket' => 'user@gmail.com', 'subject' => 'New ticket!'];
+    return new App\Mail\NewTicketNotification($details);
 });

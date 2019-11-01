@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\User;
-use JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Cookie\CookieJar;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Firebase\JWT\JWT;
+use JWTAuth;
+use App\Mail\VerifyUserEmail;
+use App\User;
 
 class UserController extends Controller
 {
@@ -36,7 +39,23 @@ class UserController extends Controller
             $this->user->password = Hash::make($request->password);
             $this->user->role = isset($request->role) ? $request->role : 'user';
             $this->user->save();
-            return response()->json(['message' => 'user created successfully'],201);
+            // create a token for email verification
+            $payload = array(
+                "iat" => time(),
+                "exp" => time() + 3600000,
+                "sub" => $this->user->email,
+                "iss" => 'localhost',
+                "aud" => 'localhost',
+            );
+            $verificationToken = JWT::encode($payload,env('JWT_SECRET'),'HS256');
+            $verificationLink = config('app.url')."/verify-email?token=".$verificationToken;
+            // TODO: email should be sent async
+            Mail::to($this->user->email)->send(
+                new VerifyUserEmail([
+                    'link' => $verificationLink, 
+                    'email' => $this->user->email
+                ]));
+            return response()->json(['message' => 'Check your inbox to verify email!'],201);
          } catch (\Throwable $error) {
             if (isset($error->{'errors'})) { 
                 $errors = $error->errors();
@@ -57,8 +76,9 @@ class UserController extends Controller
                 'email' => 'required|email',
                 'password' => 'required|min:6'
             ]);
-            // TODO: increase the token duration
-            $token = JWTAuth::attempt($request->only('email','password'));
+            // TODO: check that the user email is verified
+            // set token ttl to 7 days in secs
+            $token = JWTAuth::setTTL(604800)->attempt($request->only('email','password'));
             if ($token) {
                 // create token cookie
                 // $authCookie = cookie('token',$token,10080,'/',$request->getHttpHost(),false,false,false);
@@ -82,12 +102,30 @@ class UserController extends Controller
         }
      }
 
+     public function verifyEmail(Request $request)
+     {
+        try {
+            $token = $request->query('token');
+            $tokenPayload = JWT::decode($token,env('JWT_SECRET'),array('HS256'));
+            if (isset($tokenPayload->sub)) {
+                $this->user = User::where([['email', '=', $tokenPayload->sub], ['email_verified_at','=', null]])->first();
+                $this->user->email_verified_at = time();
+                $this->user->save();
+                // TODO: create an email verified plz login view
+                return \redirect('/login');
+            }
+        } catch (\Throwable $error) {
+            // TODO: if the token is expired resend token and inform
+            echo $error;
+        }
+     }
+
      public function logout(Request $request)
      {
         try {
             $token = $request->cookie('token');
             JWTAuth::setToken($token);
-            JWTAuth::invalidate();
+            JWTAuth::logout();
             return \response()->json(['message' => 'logout successful'],200)->withCookie(Cookie::forget('token'));
         } catch (\Throwable $error) {
             echo $error;

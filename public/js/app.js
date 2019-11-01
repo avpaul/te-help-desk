@@ -20097,7 +20097,7 @@ function signupHandler(password, email) {
               status = _ref4.status;
 
               if (status === 201) {
-                resolve('user created');
+                resolve('Check your inbox to verify email!');
               }
 
               _context2.next = 13;
@@ -20246,13 +20246,10 @@ function init() {
       }
 
       events.signup(password, email).then(function (value) {
-        // user should verify his/her email before logging in
         message.classList.add('message-success');
-        message.textContent = 'User created!';
-        var timerId = setTimeout(function () {
-          events.redirect('/login');
-          clearTimeout(timerId);
-        }, 500);
+        message.textContent = value;
+        signupPasswordInput.value = '';
+        signupEmailInput.value = '';
       })["catch"](function (error) {
         message.classList.add('message-error');
         message.textContent = error;

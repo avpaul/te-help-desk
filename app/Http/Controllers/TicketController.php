@@ -7,6 +7,9 @@ use JWTAuth;
 use App\User;
 use App\Models\Ticket;
 use App\Models\Conversation;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyUserEmail;
+
 
 class TicketController extends Controller
 {   

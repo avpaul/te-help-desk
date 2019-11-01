@@ -25,6 +25,15 @@ class User extends Authenticatable implements JWTSubject
         'role' => 'user',
     ];
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'email_verified_at',
+    ];
+
     public function getJWTIdentifier()
     {
         return $this->getKey();

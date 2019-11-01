@@ -32,13 +32,10 @@ export function init() {
             events
                 .signup(password, email)
                 .then(value => {
-                    // user should verify his/her email before logging in
                     message.classList.add('message-success');
-                    message.textContent = 'User created!';
-                    const timerId = setTimeout(() => {
-                        events.redirect('/login');
-                        clearTimeout(timerId);
-                    }, 500);
+                    message.textContent = value;
+                    signupPasswordInput.value = '';
+                    signupEmailInput.value = '';
                 })
                 .catch(error => {
                     message.classList.add('message-error');

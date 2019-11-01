@@ -31,7 +31,7 @@ export function signupHandler(password, email) {
                 email
             });
             if (status === 201) {
-                resolve('user created');
+                resolve('Check your inbox to verify email!');
             }
         } catch (error) {
             const {
