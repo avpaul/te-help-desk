@@ -20023,7 +20023,7 @@ function loginHandler(password, email) {
     var _ref = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(resolve, reject) {
-      var url, _ref2, status, data, _data;
+      var url, _ref2, status, data;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
@@ -20040,32 +20040,30 @@ function loginHandler(password, email) {
             case 4:
               _ref2 = _context.sent;
               status = _ref2.status;
-              data = _ref2.data;
 
               if (!(status === 200)) {
-                _context.next = 10;
+                _context.next = 8;
                 break;
               }
 
-              localStorage.setItem('token', data.data.token);
               return _context.abrupt("return", resolve('user logged in successfully'));
 
-            case 10:
-              _context.next = 16;
+            case 8:
+              _context.next = 14;
               break;
 
-            case 12:
-              _context.prev = 12;
+            case 10:
+              _context.prev = 10;
               _context.t0 = _context["catch"](1);
-              _data = _context.t0.response.data;
-              return _context.abrupt("return", reject(_data.error));
+              data = _context.t0.response.data;
+              return _context.abrupt("return", reject(data.error));
 
-            case 16:
+            case 14:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 12]]);
+      }, _callee, null, [[1, 10]]);
     }));
 
     return function (_x, _x2) {
@@ -20131,7 +20129,7 @@ function logoutHandler() {
     var _ref5 = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(resolve, reject) {
-      var url, _ref6, status, token;
+      var url, _ref6, status;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
@@ -20145,28 +20143,26 @@ function logoutHandler() {
             case 4:
               _ref6 = _context3.sent;
               status = _ref6.status;
-              token = _ref6.data.token;
 
               if (status === 200) {
-                localStorage.removeItem('token', token);
                 resolve('user logged out successfully');
               }
 
-              _context3.next = 14;
+              _context3.next = 13;
               break;
 
-            case 10:
-              _context3.prev = 10;
+            case 9:
+              _context3.prev = 9;
               _context3.t0 = _context3["catch"](1);
               console.log(_context3.t0);
               reject('try again');
 
-            case 14:
+            case 13:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 10]]);
+      }, _callee3, null, [[1, 9]]);
     }));
 
     return function (_x5, _x6) {
@@ -20230,6 +20226,7 @@ function init() {
   var loginButton = document.querySelector('.btn-login');
   var loginPasswordInput = document.querySelector('.user-password');
   var loginEmailInput = document.querySelector('.user-email');
+  var logoutButton = document.querySelector('.btn-logout');
   var message = document.querySelector('.message');
   var events = {
     signup: _auth__WEBPACK_IMPORTED_MODULE_0__["signupHandler"],
@@ -20273,7 +20270,8 @@ function init() {
         return;
       }
 
-      events.login(password, email).then(function (value) {// events.redirect('/');
+      events.login(password, email).then(function (value) {
+        events.redirect('/');
       })["catch"](function (error) {
         if (!error || error.toLowerCase() === 'the given data was invalid.') {
           message.classList.add('message-error');
@@ -20285,6 +20283,14 @@ function init() {
         signupPasswordInput.value = '';
         signupEmailInput.value = '';
       });
+    });
+  }
+
+  if (logoutButton) {
+    logoutButton.addEventListener('click', function () {
+      events.logout().then(function (value) {
+        return events.redirect('/login');
+      })["catch"](function (error) {});
     });
   }
 }

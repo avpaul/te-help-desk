@@ -11,21 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@index');
 
-Route::get('/tickets/{id}', function () {
-    return view('user-ticket');
-});
+Route::get('/tickets','TicketController@index');
 
-Route::get('/desk', function () {
-    return view('desk');
-});
+Route::get('/tickets/{id}','TicketController@show');
 
-Route::get('/user', function () {
-    return view('user');
-});
+Route::post('/tickets',['as' => 'tickets.post','uses' => 'TicketController@store']);
+
+Route::put('/tickets/{id}',['as' => 'tickets.update','uses' => 'TicketController@update']);
+
+Route::delete('/tickets/{id}',['as'=> 'tickets.destroy', 'uses' => 'TicketController@destroy']);
+
+Route::post('/tickets/{id}/conversations',['as' => 'conversation.post','uses' => 'ConversationController@store']);
+
 
 Route::get('/login', function () {
     return view('login');
@@ -37,4 +36,13 @@ Route::get('/signup', function () {
 
 Route::get('/reset-password', function () {
     return view('reset');
+});
+
+
+Route::get('/desk', function () {
+    return view('desk');
+});
+
+Route::get('/user', function () {
+    return view('user');
 });

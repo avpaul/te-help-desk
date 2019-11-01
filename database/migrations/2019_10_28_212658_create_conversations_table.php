@@ -13,13 +13,12 @@ class CreateConversationsTable extends Migration
      */
     public function up()
     {
-        Schema::table('conversations', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->string('user');                       
-            $table->string('ticket');            
+        Schema::create('conversations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user');                       
+            $table->integer('ticket');            
             $table->string('content'); 
             $table->timestamps();
-            $table->primary('id');
         });
     }
 

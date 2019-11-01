@@ -49,6 +49,39 @@ nav > div {
   color: #003e6b !important;
 }
 
+.no-ticket {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 500px;
+}
+
+.no-ticket .no-ticket-wrapper {
+  width: 154px;
+  height: 154px;
+  margin: 16px 0;
+  color: #003e6b;
+}
+
+.no-ticket .no-ticket-tagline {
+  font-size: 24px;
+  color: #003e6b;
+}
+
+.user-initials {
+  height: 100%;
+  width: 100%;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 24px;
+  line-height: 48px;
+  border-radius: 50%;
+  background-color: #f0f4f8;
+  color: #000000;
+}
+
 .app-auth-pages {
   height: 100%;
 }
@@ -176,6 +209,10 @@ nav > div {
 }
 
 .user-pages {
+  height: 100%;
+}
+
+.user-pages .row > .col {
   height: 100%;
 }
 
@@ -353,11 +390,17 @@ nav > div {
 
 .user-pages-home .pending-tickets .card .card-footer .dropdown-content li {
   min-height: 36px;
+  height: 36px;
+  line-height: 36px;
   padding: 0 8px;
 }
 
 .user-pages-home .pending-tickets .card .card-footer .dropdown-content li:hover {
   background-color: #f0f4f8;
+}
+
+.user-pages-home .pending-tickets .card .card-footer .dropdown-content li .btn i {
+  margin-right: 12px;
 }
 
 .user-pages-home .pending-tickets .card .card-footer .dropdown-content .btn {
@@ -434,7 +477,9 @@ nav > div {
   height: 154px;
   color: #3b3b3b;
   overflow: scroll;
+  border: none;
   border-bottom: 2px solid #f0f4f8;
+  resize: none;
 }
 
 .modal-new-ticket .ticket-editor:focus {
@@ -574,7 +619,7 @@ nav > div {
 .user-pages-ticket .user-single-ticket .user-ticket-header {
   color: #102a43;
   padding-top: 8px;
-  padding-bottom: 16px;
+  padding-bottom: 0px;
 }
 
 .user-pages-ticket .user-single-ticket .user-ticket-header .title {
@@ -627,7 +672,7 @@ nav > div {
 }
 
 .user-pages-ticket .user-ticket-conversations {
-  padding: 0 8px 16px;
+  padding: 8px 8px 16px 8px;
   height: calc(100% - 120px);
   overflow-y: scroll;
 }
@@ -680,23 +725,26 @@ nav > div {
   max-width: 500px;
   font-size: 18px;
   color: #3b3b3b;
+  color: #ffffff;
   background-color: #f0f4f8;
+  background-color: #2680c2;
   border-radius: 16px;
   border-bottom-left-radius: 0;
 }
 
-.user-pages-ticket .user-ticket-conversation.desk {
+.user-pages-ticket .user-ticket-conversation.current-user {
   flex-direction: row-reverse;
 }
 
-.user-pages-ticket .user-ticket-conversation.desk .conversation-owner {
+.user-pages-ticket .user-ticket-conversation.current-user .conversation-owner {
   margin-left: 16px;
   margin-right: 0;
 }
 
-.user-pages-ticket .user-ticket-conversation.desk .conversation-content {
+.user-pages-ticket .user-ticket-conversation.current-user .conversation-content {
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 0;
+  background-color: #003e6b;
 }
 
 .user-pages-ticket .ticket-footer {
@@ -726,21 +774,14 @@ nav > div {
   text-align: left;
 }
 
-.user-pages-ticket .ticket-footer .btn.btn-delete,
 .user-pages-ticket .ticket-footer .btn.btn-close {
+  margin-right: 16px;
   color: #ba2525;
-}
-
-.user-pages-ticket .ticket-footer .btn.btn-delete:hover,
-.user-pages-ticket .ticket-footer .btn.btn-close:hover {
   background-color: #ffeeee;
 }
 
 .user-pages-ticket .ticket-footer .btn.btn-reply {
   color: #199473;
-}
-
-.user-pages-ticket .ticket-footer .btn.btn-reply:hover {
   background-color: #c6f7e2;
 }
 
@@ -766,7 +807,9 @@ nav > div {
   height: 154px;
   color: #3b3b3b;
   overflow: scroll;
+  border: none;
   border-bottom: 2px solid #f0f4f8;
+  resize: none;
 }
 
 .user-pages-ticket .ticket-reply .ticket-reply-editor:focus {

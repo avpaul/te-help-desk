@@ -10,6 +10,8 @@ export function init() {
     const loginPasswordInput = document.querySelector('.user-password');
     const loginEmailInput = document.querySelector('.user-email');
 
+    const logoutButton = document.querySelector('.btn-logout');
+
     const message = document.querySelector('.message');
 
     const events = {
@@ -56,7 +58,7 @@ export function init() {
             events
                 .login(password, email)
                 .then(value => {
-                    // events.redirect('/');
+                    events.redirect('/');
                 })
                 .catch(error => {
                     if (
@@ -71,6 +73,15 @@ export function init() {
                     signupPasswordInput.value = '';
                     signupEmailInput.value = '';
                 });
+        });
+    }
+
+    if (logoutButton) {
+        logoutButton.addEventListener('click', () => {
+            events
+                .logout()
+                .then(value => events.redirect('/login'))
+                .catch(error => {});
         });
     }
 }

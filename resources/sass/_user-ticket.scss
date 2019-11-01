@@ -89,7 +89,7 @@
         .user-ticket-header {
             color: #102a43;
             padding-top: 8px;
-            padding-bottom: 16px;
+            padding-bottom: 0px;
             .title {
                 margin: 0;
             }
@@ -139,7 +139,7 @@
     }
 
     .user-ticket-conversations {
-        padding: 0 8px 16px;
+        padding: 8px 8px 16px 8px;
         height: calc(100% - 120px);
         overflow-y: scroll;
 
@@ -190,7 +190,9 @@
             max-width: 500px;
             font-size: 18px;
             color: #3b3b3b;
+            color: #ffffff;
             background-color: #f0f4f8;
+            background-color: #2680c2;
             border-radius: 16px;
             border-bottom-left-radius: 0;
         }
@@ -198,9 +200,8 @@
         &.user {
         }
 
-        &.desk {
+        &.current-user {
             flex-direction: row-reverse;
-
             .conversation-owner {
                 margin-left: 16px;
                 margin-right: 0;
@@ -208,6 +209,7 @@
             .conversation-content {
                 border-bottom-left-radius: 16px;
                 border-bottom-right-radius: 0;
+                background-color: #003e6b;
             }
         }
     }
@@ -233,19 +235,16 @@
                 min-width: 60px;
                 text-align: left;
             }
-            &.btn-delete,
+
             &.btn-close {
+                margin-right: 16px;
                 color: #ba2525;
-                &:hover {
-                    background-color: #ffeeee;
-                }
+                background-color: #ffeeee;
             }
 
             &.btn-reply {
                 color: #199473;
-                &:hover {
-                    background-color: #c6f7e2;
-                }
+                background-color: #c6f7e2;
             }
         }
     }
@@ -273,7 +272,9 @@
             height: 154px;
             color: #3b3b3b;
             overflow: scroll;
+            border: none;
             border-bottom: 2px solid $accent-color-light;
+            resize: none;
 
             &:focus {
                 outline: none;
