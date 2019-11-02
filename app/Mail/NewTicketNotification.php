@@ -7,19 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NewTicketNotification extends Mailable
+class NewTicketNotification extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public $ticket;
+    public $details;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($ticket)
+    public function __construct($details)
     {
-        $this->ticket = $ticket;
+        $this->details = $details;
     }
 
     /**
@@ -29,13 +29,9 @@ class NewTicketNotification extends Mailable
      */
     public function build()
     {
-        $subject = $this->ticket['subject'];
+        $subject = $this->details['subject'];
         return $this->from(env('MAIL_FROM_ADDRESS','HelpDesk'))
                     ->subject($subject)
-                    ->markdown('emails.ticket',
-                        [
-                            'ticket' => $this->ticket['ticket'], 
-                            'user' => $this->ticket['user'] 
-                        ]);
+                    ->markdown('emails.ticket',$this->details);
     }
 }

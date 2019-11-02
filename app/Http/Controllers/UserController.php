@@ -49,7 +49,6 @@ class UserController extends Controller
             );
             $verificationToken = JWT::encode($payload,env('JWT_SECRET'),'HS256');
             $verificationLink = config('app.url')."/verify-email?token=".$verificationToken;
-            // TODO: email should be sent async
             Mail::to($this->user->email)->send(
                 new VerifyUserEmail([
                     'link' => $verificationLink, 
@@ -78,7 +77,7 @@ class UserController extends Controller
             ]);
             // TODO: check that the user email is verified
             // set token ttl to 7 days in secs
-            $token = JWTAuth::setTTL(604800)->attempt($request->only('email','password'));
+            $token = JWTAuth::attempt($request->only('email','password'));
             if ($token) {
                 // create token cookie
                 // $authCookie = cookie('token',$token,10080,'/',$request->getHttpHost(),false,false,false);

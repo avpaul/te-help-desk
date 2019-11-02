@@ -19,37 +19,23 @@
         color: #003e6b;
         text-align: center;
     }
-    .ticket__title--label,
-    .ticket__comment--label,
-    .ticket__title,
-    .ticket__created_by,
-    .ticket__comment{
-        max-width: 420px;
+    .ticket__title--label
+    .ticket__title{
+        max-width: 352px;
         margin-left: auto;
         margin-right: auto;
         font-size: 18px;
         font-weight: 300;
     }
-    .ticket__title--label,
-    .ticket__comment--label{
+    .ticket__title--label{
         color: #000000;
         margin-top: 8px;
         margin-bottom: 8px;
-    }
-    .ticket__comment--label{
-        margin-bottom: 0;
     }
     .ticket__title{
         font-size: 20px;
         font-weight: 400;
         color: #003e6b;;
-    }
-    
-    .ticket__created_by{
-        color: #000000;        
-    }
-    .user-email{
-        color: #4098D7;
     }
     .btn-reply{
         display: block;
@@ -79,19 +65,12 @@
         <div class="img-wrapper img-email">
             <img src="https://image.flaticon.com/icons/svg/2227/2227574.svg"/>
         </div>
-        <h2 class="tagline">{{$subject}}</h2>
+        <h2 class="tagline">Ticket closed!</h2>
         <div class="ticket__title--label">Ticket title:</div>
         <p class="ticket__title">{{$ticket}}</p>
-        @if (isset($user))        
-        <p class="ticket__created_by">Created by <span class="user-email">{{$user}}</span></p>
-        @endif
-        @if (isset($comment))
-        <div class="ticket__comment--label">Comment:</div>
-        <p class="ticket__comment">{{$comment}}</p>
-        @endif
     </div>
     <div>   
-        <a href="{{$link}}" class="btn btn-reply">REPLY</a>
+        <a href="{{$link}}" class="btn btn-reply">REPLY TO REOPEN</a>
     </div>
 </div>
 </div>

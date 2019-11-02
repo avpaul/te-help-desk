@@ -8,8 +8,8 @@ use App\User;
 use App\Models\Ticket;
 use App\Models\Conversation;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\VerifyUserEmail;
-
+use App\Mail\NewTicketNotification;
+use App\Mail\CloseTicketNotification;
 
 class TicketController extends Controller
 {   
@@ -31,9 +31,10 @@ class TicketController extends Controller
         $user = JWTAuth::payload();
 
         try {
+            // TODO: validate ticket content before request and disable auto fill
             $request->validate([
                 'ticketTitle' => 'required|min:10|max:165',
-                'ticketContent' => 'required|min:10',
+                'ticketContent' => 'required|min:25',
             ]);
 
             $this->ticket->user  = $user['sub'];
@@ -42,16 +43,30 @@ class TicketController extends Controller
             $this->ticket->save();
             // create the first conversation 
             $this->ticket->addConversation($this->ticket->id,$user['sub'],$request->ticketContent);
+            $allSupportUsers = User::where('role', '=', 'support')->get();
+            $allSupportUsers->each(function($supportUser) use ($user)
+                {
+                    Mail::to($supportUser->email)->send( 
+                        new NewTicketNotification(
+                        [
+                            'subject' => 'New ticket created!',
+                            'user' => $user['email'],
+                            'ticket' => $this->ticket->title,
+                            'link' =>  env('APP_URL')."/tickets/".(string)$this->ticket->id,
+                        ]
+                    ));
+                }
+            );
             return response()->redirectTo('/');
         } catch (\Throwable $error) {
-            // echo $error;
-            $errors = $error->getMessages();
-            if ($errors) {
-                $errorMessage = array_key_first($errors);
-                return \response()->withError($errorMessage); 
-            }
+            echo $error;
+            // $errors = $error->getMessages();
+            // if ($errors) {
+            //     $errorMessage = array_key_first($errors);
+            //     return \response()->withError($errorMessage); 
+            // }
 
-            return \response()->withError();
+            // return \response()->withError();
         }
     }
 
@@ -70,7 +85,7 @@ class TicketController extends Controller
             {
                 $userId = $user['sub'];
                 // get all user tickets
-                $userTickets = Ticket::where('user',$userId)->orderBy('updated_at')->with(['conversations' => function ($query) {
+                $userTickets = Ticket::where('user',$userId)->orderBy('created_at','desc')->with(['conversations' => function ($query) {
                         $query->orderBy('created_at','desc')->first();
                     }
                 ])->get();
@@ -81,9 +96,9 @@ class TicketController extends Controller
                 }])->first();
                 return view('ticket',['tickets' => $userTickets, 'mainTicket' => $mainTicket]);
             } 
-            else if($user['role'] === 'support')  
+            else if($user['role'] === 'support' || $user['role'] === 'admin')  
             {
-                $userTickets = Ticket::with(['conversations' => function ($query) {
+                $userTickets = Ticket::orderBy('created_at','desc')->with(['conversations' => function ($query) {
                     $query->orderBy('created_at','desc')->first();
                 }
                 ])->get();
@@ -114,10 +129,14 @@ class TicketController extends Controller
             $request->validate([
                 'status' => 'required'
             ]);
-            if($user['role'] === 'user')
-            {
+            
                 $userId = $user['sub'];
-                $ticket = Ticket::where([['id', '=', $id], ['user', '=', $userId]])->first();
+                if($user['role'] === 'user'){
+                    $ticket = Ticket::where([['id', '=', $id], ['user', '=', $userId]])->first();
+                }
+                if($user['role'] === 'admin'){
+                    $ticket = Ticket::where('id', '=', $id)->first();
+                }
                 if (isset($ticket)) {
                     $ticket->status = $request->status;
                     $ticket->save();
@@ -125,11 +144,21 @@ class TicketController extends Controller
                     {
                         return redirect('/tickets/'.$id);
                     }
+                    if($user['role'] === 'admin' && $request->status === 'closed')
+                    {
+                        $ticketOwner = $ticket->owner()->first();
+                        Mail::to($ticketOwner->email)->send(
+                            new CloseTicketNotification([
+                                'ticket' => $ticket->title,
+                                'link' => env('APP_URL')."/tickets/".$ticket->id
+                            ])
+                        );
+                    }
                     return redirect('/');
                 } else {
                     return redirect('/tickets/'.$id);
                 }
-            }
+            
         } catch (\Throwable $error) {
             echo $error;
         }

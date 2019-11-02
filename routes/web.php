@@ -11,7 +11,19 @@
 |
 */
 
-use App\Mail\VerifyUserEmail;
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/signup', function () {
+    return view('signup');
+});
+
+Route::get('/reset-password', function () {
+    return view('reset');
+});
+
+Route::get('/verify-email', 'UserController@verifyEmail');
 
 Route::get('/', 'HomeController@index');
 
@@ -27,31 +39,8 @@ Route::delete('/tickets/{id}',['as'=> 'tickets.destroy', 'uses' => 'TicketContro
 
 Route::post('/tickets/{id}/conversations',['as' => 'conversation.post','uses' => 'ConversationController@store']);
 
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/signup', function () {
-    return view('signup');
-});
-
-Route::get('/reset-password', function () {
-    return view('reset');
-});
-
-Route::get('/verify-email', 'UserController@verifyEmail');
-
-Route::get('/desk', function () {
-    return view('desk');
-});
-
-Route::get('/user', function () {
-    return view('user');
-});
-
 Route::get('/mailable', function()
 {
-    $details = ['user' => 'http://localhost:8000/verify-email', 'ticket' => 'user@gmail.com', 'subject' => 'New ticket!'];
+    $details = ['link' => 'http://localhost:8000/tickets/4', 'comment' => 'Yes! we\'ve noticed that thing and our engineers are working on it', 'subject' => 'New reply to your ticket!', 'ticket' => 'Helpdesk under heavy usage'];
     return new App\Mail\NewTicketNotification($details);
 });

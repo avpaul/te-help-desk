@@ -7,6 +7,8 @@ use JWTAuth;
 use App\User;
 use App\Models\Ticket;
 use App\Models\Conversation;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewTicketNotification;
 
 class ConversationController extends Controller
 {   
@@ -46,7 +48,18 @@ class ConversationController extends Controller
                 }
             }
             $ticket->save();
-
+            if ($user->role === 'support' || $user['role'] === 'admin') {
+                $ticketOwner = $ticket->owner()->first();
+                Mail::to($ticketOwner->email)->send(
+                    new NewTicketNotification(
+                        [
+                            'subject' => 'New reply to your ticket!',
+                            'comment' => $this->conversation->content,
+                            'ticket' => $ticket->title,
+                            'link' => env('APP_URL')."/tickets/".(string)$ticket->id,
+                        ]
+                    ));
+            }
             // create the first conversation 
             return response()->redirectTo('/tickets/'.$id);
         } catch (\Throwable $error) {

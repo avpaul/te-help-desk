@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class VerifyUserEmail extends Mailable implements ShouldQueue
+class CloseTicketNotification extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -28,14 +28,10 @@ class VerifyUserEmail extends Mailable implements ShouldQueue
      * @return $this
      */
     public function build()
-    {   
-        $subject = 'Just one step to get help!';
-        return $this->from(env('MAIL_FROM_ADDRESS','HelpDesk'))
+    {
+        $subject = 'Ticket closed!';
+        return $this->from(env('MAIL_FROM_ADDRESS','Helpdesk'))
                     ->subject($subject)
-                    ->markdown('emails.email',
-                        [
-                            'link' => $this->details['link'], 
-                            'email' => $this->details['email'] 
-                        ]);
+                    ->markdown('emails.email-closed',$this->details);
     }
 }

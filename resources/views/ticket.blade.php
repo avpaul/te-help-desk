@@ -125,7 +125,7 @@
                         </div>
 
                         <div class="ticket-footer">
-                            @if (getUser()->role === 'user' && $mainTicket->status !== 'closed')
+                            @if ((getUser()->role === 'user' || getUser()->role === 'admin') && $mainTicket->status !== 'closed')
                             <button
                                 class="btn btn-flat btn-close waves-effect waves-light"
                                 title="Close Ticket"

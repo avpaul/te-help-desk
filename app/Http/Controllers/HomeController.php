@@ -45,7 +45,7 @@ class HomeController extends Controller
                 $ticketItem->conversationsCount = Conversation::where('ticket','=',$ticketItem->id)->count();
             });
             return view('user',['tickets' => $userTickets, 'user' => ['email' => $user['email']]]);
-        } else if($user['role'] === 'support') {
+        } else if($user['role'] === 'support' || $user['role'] === 'admin') {
             $allTickets = Ticket::where('deleted_at', '=', null)->orderBy('updated_at','desc')->with(['owner:id,email', 'conversations' => function($query)
             {
                 $query->orderBy('created_at','desc')->take(-1);
