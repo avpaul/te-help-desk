@@ -44,31 +44,34 @@
             </nav>
 
             <div class="row app-container">
-                <!-- <div class="col s2">
-                    <div class="btn">create user</div>
-                </div> -->
-                <div class="desk-tickets-wrapper">
-                    <div class="desk-tickets-header">
-                        <h5 class="title">All Tickets <span>({{count($tickets)}})</span></h5>
-                    </div>
-                    <div class="ticket-section-header">
-                        <div>Not answered</div></div>
-                    <section class="pending-tickets">
-                        @foreach ($tickets as $ticket)
-                        <a class="ticket" href="/tickets/{{$ticket->id}}">
-                            <div class="ticket-owner">
-                                <!-- <img src="/user-96.png"alt="{{$ticket->owner->email}}"/> -->
-                                <div class="user-initials">{{getUserInitials($ticket->owner->email)}}</div>
+                <div class="col s4  pull-4">
+                    <form action="{{route('admin.create.user')}}" method="POST">
+                        @csrf
+                        <h3>Create new user!</h3>
+                        <div class="input-field-wrapper">
+                            <div class="input-field">
+                                <input type="text" class="user-email" name="email" required/>
+                                <label for="user-email">User email</label>
                             </div>
-                            <div class="ticket-owner-name">{{$ticket->owner->email}}</div>
-                            <div class="ticket-title">{{$ticket->title}}</div>
-                            <div class="ticket-latest-message">{{$ticket->conversations[0]->content}}</div>
-                            <div class="ticket-status {{$ticket->status}}"></div>
-                            <!-- <div class="ticket-date">{{formatDate($ticket->created_at, 'short')}}</div> -->
-                            <div class="ticket-date">{{$ticket->created_at}}</div>
-                        </a> 
-                        @endforeach
-                    </section>
+                            <div class="input-field">
+                                <input type="text" class="user-password" name="password" required />
+                                <label for="user-password">User password</label>
+                            </div>
+                            <div class="input-field">
+                                <select name="role">
+                                  <option value="user"  selected>User</option>
+                                  <option value="support">Support Engineer</option>
+                                  <option value="admin">Admin User</option>
+                                </select>
+                                <label>User type</label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button class="btn" type="reset">CANCEL</button>
+                            <button class="btn" type="submit">CREATE</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 

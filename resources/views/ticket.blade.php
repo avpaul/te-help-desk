@@ -40,7 +40,7 @@
                         />  -->
                         <div class="user-initials">{{getUserInitials(getUser()->email)}}</div>
                         @else
-                        <div class="user-initials">sp</div>
+                        <div class="user-initials">hd</div>
                         @endif
                     </div>
                     <button class="btn btn-flat btn-logout">
@@ -92,13 +92,9 @@
                             <div class="user-ticket-conversation {{$conversation->owner->id === getUser()->id ? 'current-user' : ''}}">
                                 <div class="conversation-owner" title="{{$conversation->owner->email}}">
                                     @if ($conversation->owner->role === 'user')
-                                    <!-- <img
-                                        src="/user-96.png"
-                                        alt="user"
-                                    />  -->
                                     <div class="user-initials">{{getUserInitials($conversation->owner->email)}}</div>
                                     @else
-                                    <div class="user-initials">sp</div>
+                                    <div class="user-initials">hd</div>
                                     @endif
                                 </div>
                                 <div class="conversation-content">
@@ -106,22 +102,6 @@
                                 </div>
                             </div>
                             @endforeach
-
-                            
-
-                            <!-- <div class="user-ticket-conversation desk">
-                                <div class="conversation-owner">
-                                    <div class="user-initials" title="HelpDesk">
-                                        hd
-                                    </div>
-                                </div>
-                                <div class="conversation-content">
-                                    I'm having an issue with the settings, they
-                                    are not working as expected. I'm double
-                                    checking the values but they are not the
-                                    same.
-                                </div>
-                            </div> -->
                         </div>
 
                         <div class="ticket-footer">
@@ -140,13 +120,6 @@
                                 <input type="text" name="status" value="closed">
                             </form>
                             @endif
-
-                            <!-- <button class="btn btn-flat waves-effect">
-                                        <i
-                                            class="zmdi zmdi-check-circle text-primary"
-                                        ></i
-                                        >&nbsp;&nbsp;<span>re-open</span>
-                                    </button> -->
                             <button
                                 class="btn btn-flat btn-reply waves-effect waves-light"
                                 title="Reply Ticket"
@@ -154,13 +127,6 @@
                                 <i class="zmdi zmdi-mail-send"></i
                                 >&nbsp;&nbsp;<span>reply</span>
                             </button>
-
-                            <!-- <button class="btn btn-flat btn-delete waves-effect" title="Close and Delete Ticket">
-                                        <i
-                                            class="zmdi zmdi-delete text-danger"
-                                        ></i
-                                        >&nbsp;&nbsp;<span>delete</span>
-                                    </button> -->
                         </div>
 
                         <form class="ticket-reply" action="{{route('conversation.post',['id' => $mainTicket->id])}}" method="POST">

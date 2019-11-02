@@ -1,64 +1,5 @@
 .desk-pages {
     height: 100%;
-
-    #nav-mobile {
-        line-height: 60px;
-    }
-
-    .menu-item {
-        a:hover {
-            border-bottom: 4px $primary-color solid;
-            background-color: #ffffff !important;
-        }
-    }
-
-    .user-profile {
-        margin-top: 8px;
-        height: 48px;
-        width: 48px;
-        border-radius: 50%;
-        overflow: hidden;
-        cursor: pointer;
-        background-color: $accent-color-light;
-
-        &:hover {
-            box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14),
-                0 1px 7px 0 rgba(0, 0, 0, 0.12),
-                0 3px 1px -1px rgba(0, 0, 0, 0.2);
-        }
-
-        img {
-            height: auto;
-            width: 100%;
-        }
-    }
-
-    .nav-actions {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        .btn-logout {
-            margin-left: 16px;
-            margin-top: 8px;
-            // margin-bottom: 4px;
-            font-family: inherit;
-            line-height: 32px;
-            border: 1px solid $primary-color;
-            color: #102a43;
-
-            &:hover {
-                background-color: $primary-color !important;
-                color: #ffffff;
-            }
-
-            i {
-                display: inline-block;
-                line-height: 32px;
-                height: 34px;
-            }
-        }
-    }
 }
 
 .desk-pages-home {
@@ -140,37 +81,10 @@
 
             .ticket-owner {
                 margin-right: 16px;
-                height: 48px;
-                width: 48px;
-                border-radius: 50%;
-                overflow: hidden;
-                cursor: pointer;
-
-                &:hover {
-                    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14),
-                        0 1px 7px 0 rgba(0, 0, 0, 0.12),
-                        0 3px 1px -1px rgba(0, 0, 0, 0.2);
-                }
-
-                img {
-                    height: auto;
-                    width: 100%;
-                }
-
-                .user-initials {
-                    height: 100%;
-                    width: 100%;
-                    text-transform: uppercase;
-                    text-align: center;
-                    font-size: 24px;
-                    line-height: 48px;
-                    border-radius: 50%;
-                    background-color: $accent-color-light;
-                }
             }
 
             .ticket-owner-name {
-                width: 150px;
+                width: 172px;
                 padding-right: 16px;
                 font-size: 18px;
                 overflow: hidden;
@@ -188,14 +102,12 @@
                 font-family: 'Source Sans Pro', sans-serif;
                 color: #102a43;
             }
-
             .ticket-latest-message {
                 width: 200px;
                 font-size: 16px;
                 text-overflow: ellipsis;
                 color: #829ab1;
             }
-
             .ticket-status {
                 margin: 0 16px;
                 width: 8px;

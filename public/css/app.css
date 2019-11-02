@@ -40,6 +40,59 @@ nav > div {
   border-bottom: 1px #f0f4f8 solid;
 }
 
+nav #nav-mobile {
+  line-height: 60px;
+}
+
+nav .menu-item a:hover {
+  border-bottom: 4px #003e6b solid;
+  background-color: #ffffff !important;
+}
+
+nav .nav-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+nav .nav-actions .btn-logout {
+  margin-left: 16px;
+  margin-top: 8px;
+  font-family: inherit;
+  line-height: 32px;
+  border: 1px solid #003e6b;
+  background-color: #003e6b !important;
+  color: #ffffff;
+}
+
+nav .nav-actions .btn-logout i {
+  display: inline-block;
+  line-height: 32px;
+  height: 34px;
+}
+
+.user-profile,
+.ticket-owner {
+  margin-top: 8px;
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #f0f4f8;
+}
+
+.user-profile:hover,
+.ticket-owner:hover {
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+}
+
+.user-profile img,
+.ticket-owner img {
+  height: auto;
+  width: 100%;
+}
+
 .input-field input:focus {
   border-bottom-color: #003e6b !important;
   box-shadow: 0 1px 0 0 #003e6b !important;
@@ -214,59 +267,6 @@ nav > div {
 
 .user-pages .row > .col {
   height: 100%;
-}
-
-.user-pages #nav-mobile {
-  line-height: 60px;
-}
-
-.user-pages .menu-item a:hover {
-  border-bottom: 4px #003e6b solid;
-  background-color: #ffffff !important;
-}
-
-.user-pages .user-profile {
-  margin-top: 8px;
-  height: 48px;
-  width: 48px;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-  background-color: #f0f4f8;
-}
-
-.user-pages .user-profile:hover {
-  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
-}
-
-.user-pages .user-profile img {
-  height: auto;
-  width: 100%;
-}
-
-.user-pages .nav-actions {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.user-pages .nav-actions .btn-logout {
-  margin-left: 16px;
-  margin-top: 8px;
-  font-family: inherit;
-  line-height: 36px;
-  border: 1px solid #003e6b;
-  color: #102a43;
-}
-
-.user-pages .nav-actions .btn-logout:hover {
-  background-color: #003e6b !important;
-  color: #ffffff;
-}
-
-.user-pages .nav-actions .btn-logout i {
-  display: inline-block;
-  line-height: 36px;
 }
 
 .user-pages-home .user-tickets-wrapper {
@@ -867,60 +867,6 @@ nav > div {
   height: 100%;
 }
 
-.desk-pages #nav-mobile {
-  line-height: 60px;
-}
-
-.desk-pages .menu-item a:hover {
-  border-bottom: 4px #003e6b solid;
-  background-color: #ffffff !important;
-}
-
-.desk-pages .user-profile {
-  margin-top: 8px;
-  height: 48px;
-  width: 48px;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-  background-color: #f0f4f8;
-}
-
-.desk-pages .user-profile:hover {
-  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
-}
-
-.desk-pages .user-profile img {
-  height: auto;
-  width: 100%;
-}
-
-.desk-pages .nav-actions {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.desk-pages .nav-actions .btn-logout {
-  margin-left: 16px;
-  margin-top: 8px;
-  font-family: inherit;
-  line-height: 32px;
-  border: 1px solid #003e6b;
-  color: #102a43;
-}
-
-.desk-pages .nav-actions .btn-logout:hover {
-  background-color: #003e6b !important;
-  color: #ffffff;
-}
-
-.desk-pages .nav-actions .btn-logout i {
-  display: inline-block;
-  line-height: 32px;
-  height: 34px;
-}
-
 .desk-pages-home .app-container {
   display: flex;
   flex-direction: row;
@@ -998,35 +944,10 @@ nav > div {
 
 .desk-pages-home .pending-tickets .ticket .ticket-owner {
   margin-right: 16px;
-  height: 48px;
-  width: 48px;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.desk-pages-home .pending-tickets .ticket .ticket-owner:hover {
-  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
-}
-
-.desk-pages-home .pending-tickets .ticket .ticket-owner img {
-  height: auto;
-  width: 100%;
-}
-
-.desk-pages-home .pending-tickets .ticket .ticket-owner .user-initials {
-  height: 100%;
-  width: 100%;
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 24px;
-  line-height: 48px;
-  border-radius: 50%;
-  background-color: #f0f4f8;
 }
 
 .desk-pages-home .pending-tickets .ticket .ticket-owner-name {
-  width: 150px;
+  width: 172px;
   padding-right: 16px;
   font-size: 18px;
   overflow: hidden;

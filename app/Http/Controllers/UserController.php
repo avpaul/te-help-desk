@@ -20,6 +20,7 @@ class UserController extends Controller
     {
         $this->user = $user;
     }
+    
     /**
      * create a new user
      * @var email:string 
