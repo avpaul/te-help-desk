@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Cookie\CookieJar;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Firebase\JWT\JWT;
 use JWTAuth;
@@ -20,6 +21,7 @@ class UserController extends Controller
     {
         $this->user = $user;
     }
+    
     /**
      * create a new user
      * @var email:string 
@@ -56,7 +58,7 @@ class UserController extends Controller
                 ]));
             return response()->json(['message' => 'Check your inbox to verify email!'],201);
          } catch (\Throwable $error) {
-            if (isset($error->{'errors'})) { 
+            if ($error instanceof ValidationException) { 
                 $errors = $error->errors();
                 $errorMessage = array_key_first($errors);
                 if (isset($errorMessage)) {
@@ -77,6 +79,7 @@ class UserController extends Controller
             ]);
             // TODO: check that the user email is verified
             // set token ttl to 7 days in secs
+            // JWTAuth::setTTL(86400);
             $token = JWTAuth::attempt($request->only('email','password'));
             if ($token) {
                 // create token cookie
@@ -89,15 +92,15 @@ class UserController extends Controller
             }
             
         } catch (\Throwable $error) {
-            echo $error;
-            if (isset($error->{'errors'})) {            
+            if ($error instanceof ValidationException) {          
             $errors = $error->errors();
              $errorMessage = array_key_first($errors);
-             if (isset($errorMessage)) {
+             if (is_array($errors[$errorMessage])) {             
+                return \response()->json(['error' => $errors[$errorMessage][0]]);                
+            }
                 return \response()->json(['message' => 'something wrong happened', 'error' => $errors[$errorMessage]],400);                 
-             }}
-             echo $error->getMessage();
-            return \response()->json(['message' => 'something wrong happened', 'error' => $error],400);
+             }
+            return \response()->json(['message' => 'something wrong happened', 'error' => $error->getMessage()],400);
         }
      }
 

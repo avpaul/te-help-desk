@@ -27,11 +27,11 @@
                     <ul id="nav-mobile" class="right  ">
                         <li class="menu-item ">
                             <a href="/login" class="text-primary active"
-                                >Login</a
+                                >LOGIN</a
                             >
                         </li>
                         <li class="menu-item">
-                            <a href="/signup" class="text-primary">Sign Up</a>
+                            <a href="/signup" class="text-primary">SIGNUP</a>
                         </li>
                     </ul>
                 </div>
@@ -60,18 +60,18 @@
                         </h3>
                         <div class="input-field-wrapper">
                             <div class="input-field">
-                                <input type="text" class="user-email" />
+                                <input type="text" class="user-email" required />
                                 <label for="user-email">Your Email</label>
                             </div>
 
                             <div class="input-field">
-                                <input type="password" class="user-password" />
+                                <input type="password" class="user-password" required />
                                 <label for="user-password">Your Password</label>
                             </div>
                         </div>
 
                         <div class="row">
-                <span class="message"></span>
+                        <span class="message"></span>
             </div>
 
                         <div class="row">

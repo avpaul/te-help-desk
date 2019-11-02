@@ -14,6 +14,11 @@
             M.Modal.init(modalElms, { opacity: 0.16 });
         }
 
+        const select = document.querySelectorAll('select');
+        if (select) {
+            M.FormSelect.init(select, {});
+        }
+
         const replyButton = document.querySelector('.btn-reply');
         if (replyButton) {
             replyButton.addEventListener('click', () => {
@@ -36,11 +41,5 @@
         const conversationsWrapper = document.querySelector(
             '.user-ticket-conversations'
         );
-        if (conversationsWrapper) {
-            conversationsWrapper.addEventListener('scroll', event => {
-                console.log('scroll');
-                console.log(arguments);
-            });
-        }
     });
 })();

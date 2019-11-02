@@ -20303,7 +20303,6 @@ function init() {
 
 (function () {
   document.addEventListener('DOMContentLoaded', function () {
-    var _arguments = arguments;
     var dropdownEls = document.querySelectorAll('.dropdown-trigger');
 
     if (dropdownEls) {
@@ -20320,6 +20319,12 @@ function init() {
       M.Modal.init(modalElms, {
         opacity: 0.16
       });
+    }
+
+    var select = document.querySelectorAll('select');
+
+    if (select) {
+      M.FormSelect.init(select, {});
     }
 
     var replyButton = document.querySelector('.btn-reply');
@@ -20340,13 +20345,6 @@ function init() {
     }
 
     var conversationsWrapper = document.querySelector('.user-ticket-conversations');
-
-    if (conversationsWrapper) {
-      conversationsWrapper.addEventListener('scroll', function (event) {
-        console.log('scroll');
-        console.log(_arguments);
-      });
-    }
   });
 })();
 

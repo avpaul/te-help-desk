@@ -39,11 +39,67 @@ body {
     }
 }
 
+// NAV
 nav {
     padding-left: 64px;
     padding-right: 64px;
+
     & > div {
         border-bottom: 1px $accent-color-light solid;
+    }
+
+    #nav-mobile {
+        line-height: 60px;
+    }
+
+    .menu-item {
+        a:hover {
+            border-bottom: 4px $primary-color solid;
+            background-color: #ffffff !important;
+        }
+    }
+
+    .nav-actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .btn-logout {
+            margin-left: 16px;
+            margin-top: 8px;
+            font-family: inherit;
+            line-height: 32px;
+            border: 1px solid $primary-color;
+            background-color: $primary-color !important;
+            color: #ffffff;
+
+            i {
+                display: inline-block;
+                line-height: 32px;
+                height: 34px;
+            }
+        }
+    }
+}
+
+.user-profile,
+.ticket-owner {
+    margin-top: 8px;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: $accent-color-light;
+
+    &:hover {
+        box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14),
+            0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    }
+
+    img {
+        height: auto;
+        width: 100%;
     }
 }
 

@@ -5,7 +5,6 @@ function formatDate($date, $format = 'long'): string {
         return (int)date('d') !== (int)date('d', strtotime($date)) ? date('d M',strtotime($date)) : date('h:i A',strtotime($date));
     }
     return (int)date('d') !== (int)date('d', strtotime($date)) ? date('h:i A, d M',strtotime($date)) : date('h:i A',strtotime($date));
-
 }
 
 function getUser()

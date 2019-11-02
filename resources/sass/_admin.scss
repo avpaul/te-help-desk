@@ -1,0 +1,38 @@
+.admin-dashboard {
+    form {
+        margin-top: 128px;
+    }
+    form h5 {
+        color: $primary-color;
+    }
+    .input-field-wrapper {
+        min-width: 320px;
+    }
+    .input-field {
+        min-width: 256px;
+    }
+    .form-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        .btn {
+            margin: 8px;
+        }
+        .btn-cancel {
+            background-color: $accent-color-light;
+        }
+        .btn-create {
+            margin-right: 0;
+            color: #ffffff;
+            background-color: $primary-color;
+        }
+    }
+    .error-message {
+        text-align: right;
+        columns: #ba2525;
+    }
+    .success-message {
+        text-align: right;
+        color: #199473;
+    }
+}

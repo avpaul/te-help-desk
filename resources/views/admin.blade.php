@@ -44,31 +44,40 @@
             </nav>
 
             <div class="row app-container">
-                <!-- <div class="col s2">
-                    <div class="btn">create user</div>
-                </div> -->
-                <div class="desk-tickets-wrapper">
-                    <div class="desk-tickets-header">
-                        <h5 class="title">All Tickets <span>({{count($tickets)}})</span></h5>
-                    </div>
-                    <div class="ticket-section-header">
-                        <div>Not answered</div></div>
-                    <section class="pending-tickets">
-                        @foreach ($tickets as $ticket)
-                        <a class="ticket" href="/tickets/{{$ticket->id}}">
-                            <div class="ticket-owner">
-                                <!-- <img src="/user-96.png"alt="{{$ticket->owner->email}}"/> -->
-                                <div class="user-initials">{{getUserInitials($ticket->owner->email)}}</div>
+                <div class="col admin-dashboard">
+                    <form action="{{route('admin.create.user')}}" method="POST">
+                        @csrf
+                        <h5>Create new user!</h5>
+                        <div class="input-field-wrapper">
+                            <div class="input-field">
+                                <input type="text" class="user-email" name="email" required/>
+                                <label for="user-email">User email</label>
                             </div>
-                            <div class="ticket-owner-name">{{$ticket->owner->email}}</div>
-                            <div class="ticket-title">{{$ticket->title}}</div>
-                            <div class="ticket-latest-message">{{$ticket->conversations[0]->content}}</div>
-                            <div class="ticket-status {{$ticket->status}}"></div>
-                            <!-- <div class="ticket-date">{{formatDate($ticket->created_at, 'short')}}</div> -->
-                            <div class="ticket-date">{{$ticket->created_at}}</div>
-                        </a> 
-                        @endforeach
-                    </section>
+                            <div class="input-field">
+                                <input type="text" class="user-password" name="password" required />
+                                <label for="user-password">User password</label>
+                            </div>
+                            <div class="input-field">
+                                <select name="role">
+                                  <option value="user"  selected>User</option>
+                                  <option value="support">Support Engineer</option>
+                                  <option value="admin">Admin User</option>
+                                </select>
+                                <label>User type</label>
+                            </div>
+                        </div>
+
+                        <div class="form-footer">
+                            <button class="btn btn-flat btn-cancel" type="reset">CLEAR</button>
+                            <button class="btn btn-flat btn-create" type="submit">CREATE</button>
+                        </div>
+                        @isset($error)
+                        <div class="error-message">{{$error}}</div>
+                        @endisset
+                        @isset($message)
+                        <div class="success-message">{{$message}}</div>
+                        @endisset
+                    </form>
                 </div>
             </div>
 

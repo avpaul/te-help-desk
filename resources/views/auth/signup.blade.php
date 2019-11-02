@@ -17,10 +17,10 @@
 <div class="nav-wrapper ">
 <a href="/" class="brand-logo text-primary ">HELP DESK</a>
 <ul id="nav-mobile" class="right  ">
-<li class="menu-item "><a href="/login" class="text-primary">Login</a>
+<li class="menu-item "><a href="/login" class="text-primary">LOGIN</a>
 </li>
 <li class="menu-item">
-<a href="/signup"  class="text-primary active">Sign Up</a>
+<a href="/signup"  class="text-primary active">SIGNUP</a>
 </li>
 </ul>
 </div></nav>
@@ -42,12 +42,12 @@
             <h3 class="login-form-header"><span>Hey!</span> <span class="h4">nice to have you</span> </h3>
             <div class="input-field-wrapper">
                 <div class="input-field">
-                <input type="text" class="user-email">
+                <input type="text" class="user-email" required>
                 <label for="user-email">Your Email</label>
             </div>
 
             <div class="input-field">
-                <input type="password" class="user-password">
+                <input type="password" class="user-password" required>
                 <label for="user-password">Your Password</label>
             </div>
             </div>
