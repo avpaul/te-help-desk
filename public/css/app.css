@@ -25,6 +25,10 @@ body {
   margin-right: 64px;
 }
 
+#app {
+  height: 100%;
+}
+
 #app > .row {
   margin-bottom: 0;
   height: calc(100% - 64px);
@@ -42,6 +46,10 @@ nav > div {
 
 nav #nav-mobile {
   line-height: 60px;
+}
+
+nav .menu-item a.active {
+  border-bottom: 4px #003e6b solid;
 }
 
 nav .menu-item a:hover {
@@ -135,26 +143,19 @@ nav .nav-actions .btn-logout i {
   color: #000000;
 }
 
-.app-auth-pages {
-  height: 100%;
+.app-verify {
+  margin: 254px auto;
 }
 
-.app-auth-pages > .row {
-  margin-bottom: 0;
-  height: calc(100% - 64px);
-  overflow: hidden;
+.message-error {
+  color: #ba2525;
 }
 
-.app-auth-pages #nav-mobile {
-  line-height: 60px;
+.message-success {
+  color: #3f9142;
 }
 
-.app-auth-pages .menu-item a:hover {
-  border-bottom: 4px #003e6b solid;
-  background-color: #ffffff !important;
-}
-
-.app-auth-pages .app-banner {
+.app-auth-banner {
   display: flex;
   margin-left: 10rem;
   padding-left: 32px;
@@ -164,30 +165,31 @@ nav .nav-actions .btn-logout i {
   align-items: flex-start;
 }
 
-.app-auth-pages .app-banner .img-wrapper {
+.app-auth-banner .img-wrapper {
   height: 10%;
   width: 50%;
   overflow: hidden;
 }
 
-.app-auth-pages .app-banner .img-wrapper img {
+.app-auth-banner .img-wrapper img {
   width: 100%;
   height: 100%;
 }
 
-.app-auth-pages .app-banner .app-banner-header {
+.app-auth-banner .app-banner-header {
   color: #f0b429;
 }
 
-.app-auth-pages .app-banner .app-banner-header span {
+.app-auth-banner .app-banner-header span {
   display: block;
 }
 
-.app-auth-pages .app-banner .app-banner-header span:last-of-type {
+.app-auth-banner .app-banner-header span:last-of-type {
   font-size: 75%;
 }
 
-.app-auth-pages .login-form {
+.login-form,
+.signup-form {
   height: 150%;
   margin-top: -5%;
   padding-top: 13%;
@@ -200,55 +202,55 @@ nav .nav-actions .btn-logout i {
   border-bottom-left-radius: 50%;
 }
 
-.app-auth-pages .login-form .login-form-wrapper {
-  margin: 16px 64px;
+.login-form .login-form-wrapper,
+.signup-form .login-form-wrapper {
+  margin: 49% 64px 16px;
 }
 
-.app-auth-pages .login-form .login-form-wrapper .message {
+.login-form .login-form-wrapper .message,
+.signup-form .login-form-wrapper .message {
   display: block;
   text-align: right;
 }
 
-.app-auth-pages .login-form .login-form-wrapper .message.message-error {
+.login-form .login-form-wrapper .message.message-error,
+.signup-form .login-form-wrapper .message.message-error {
   color: #ba2525;
 }
 
-.app-auth-pages .login-form .login-form-wrapper .message.message-success {
+.login-form .login-form-wrapper .message.message-success,
+.signup-form .login-form-wrapper .message.message-success {
   color: #3f9142;
 }
 
-.app-auth-pages .login-form-header {
+.login-form-header {
   font-family: "Lato", sans-serif;
   font-weight: 400;
   color: #003e6b;
 }
 
-.app-auth-pages .login-form-header span {
+.login-form-header span {
   display: block;
 }
 
-.app-auth-pages .login-form-header span:last-of-type {
+.login-form-header span:last-of-type {
   font-size: 80%;
 }
 
-.app-auth-pages .input-field-wrapper {
+.input-field-wrapper {
   margin: 32px 0;
   min-width: 260px;
 }
 
-.app-auth-pages .btn-login {
+.btn-login,
+.btn-signup {
   background-color: #003e6b;
   min-width: 128px;
 }
 
-.app-auth-pages footer {
-  margin-top: -64px;
-  padding-left: 64px;
-}
-
-.app-login .menu-item a.active,
-.app-signup .menu-item a.active {
-  border-bottom: 4px #003e6b solid;
+.btn-login:hover,
+.btn-signup:hover {
+  background-color: #003e6b;
 }
 
 .app-reset .input-field-wrapper {
@@ -1063,16 +1065,17 @@ nav .nav-actions .btn-logout i {
   text-align: left;
 }
 
+.admin-dashboard {
+  margin: 0 auto;
+  max-width: 320px;
+}
+
 .admin-dashboard form {
   margin-top: 128px;
 }
 
 .admin-dashboard form h5 {
   color: #003e6b;
-}
-
-.admin-dashboard .input-field-wrapper {
-  min-width: 320px;
 }
 
 .admin-dashboard .input-field {
@@ -1108,5 +1111,10 @@ nav .nav-actions .btn-logout i {
 .admin-dashboard .success-message {
   text-align: right;
   color: #199473;
+}
+
+footer {
+  margin-top: -64px;
+  padding-left: 64px;
 }
 

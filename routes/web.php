@@ -12,20 +12,20 @@
 */
 
 Route::get('/login', function () {
-    return view('auth.login');
+    return view('auth.login', ['title' => 'Login']);
 });
 
 Route::get('/signup', function () {
-    return view('auth.signup');
+    return view('auth.signup', ['title' => 'Create account']);
 });
 
 Route::get('/reset-password', function () {
-    return view('auth.reset');
+    return view('auth.reset', ['title' => 'Reset password']);
 });
 
-Route::get('/verify-email', 'UserController@verifyEmail');
+Route::get('/verify-email', 'UserController@verifyEmail', ['title' => 'Verify email']);
 
-Route::get('/dashboard', 'AdminController@show');
+Route::get('/dashboard', 'AdminController@show', ['title' => 'Admin']);
 
 Route::post('/dashboard', ['as' => 'admin.create.user', 'uses' => 'AdminController@createUser']);
 

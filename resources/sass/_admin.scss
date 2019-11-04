@@ -1,13 +1,14 @@
 .admin-dashboard {
+    margin: 0 auto;
+    max-width: 320px;
+
     form {
         margin-top: 128px;
+        h5 {
+            color: $primary-color;
+        }
     }
-    form h5 {
-        color: $primary-color;
-    }
-    .input-field-wrapper {
-        min-width: 320px;
-    }
+
     .input-field {
         min-width: 256px;
     }

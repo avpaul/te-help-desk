@@ -26,7 +26,8 @@ export function init() {
             const password = signupPasswordInput.value;
             const email = signupEmailInput.value;
             if (!password && !email) {
-                message.textContent = 'email and password required';
+                message.classList.add('message-error');
+                message.textContent = 'Email and Password required';
                 return;
             }
             events
@@ -49,7 +50,8 @@ export function init() {
             const password = loginPasswordInput.value;
             const email = loginEmailInput.value;
             if (!password && !email) {
-                message.textContent = 'email and password required';
+                message.classList.add('message-error');
+                message.textContent = 'Email and Password required';
                 return;
             }
             events

@@ -1,114 +1,86 @@
-.app-auth-pages {
-    height: 100%;
+.app-auth-banner {
+    display: flex;
+    margin-left: 10rem;
+    padding-left: 32px;
+    padding-top: 128px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 
-    & > .row {
-        margin-bottom: 0;
-        height: calc(100% - 64px);
+    .img-wrapper {
+        height: 10%;
+        width: 50%;
         overflow: hidden;
-    }
-
-    #nav-mobile {
-        line-height: 60px;
-    }
-
-    .menu-item {
-        a:hover {
-            border-bottom: 4px $primary-color solid;
-            background-color: #ffffff !important;
+        img {
+            width: 100%;
+            height: 100%;
         }
     }
 
-    .app-banner {
-        display: flex;
-        margin-left: 10rem;
-        padding-left: 32px;
-        padding-top: 128px;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-
-        .img-wrapper {
-            height: 10%;
-            width: 50%;
-            overflow: hidden;
-            img {
-                width: 100%;
-                height: 100%;
-            }
-        }
-
-        .app-banner-header {
-            color: #f0b429;
-            span {
-                display: block;
-                &:last-of-type {
-                    font-size: 75%;
-                }
-            }
-        }
-    }
-
-    .login-form {
-        height: 150%;
-        margin-top: -5%;
-        padding-top: 13%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-start;
-        background-color: $accent-color-light;
-        border-top-left-radius: 50%;
-        border-bottom-left-radius: 50%;
-
-        .login-form-wrapper {
-            margin: 16px 64px;
-
-            .message {
-                display: block;
-                text-align: right;
-                &.message-error {
-                    color: #ba2525;
-                }
-                &.message-success {
-                    color: #3f9142;
-                }
-            }
-        }
-    }
-
-    .login-form-header {
-        font-family: 'Lato', sans-serif;
-        font-weight: 400;
-        color: $primary-color;
-
+    .app-banner-header {
+        color: #f0b429;
         span {
             display: block;
             &:last-of-type {
-                font-size: 80%;
+                font-size: 75%;
             }
         }
     }
+}
 
-    .input-field-wrapper {
-        margin: 32px 0;
-        min-width: 260px;
-    }
+.login-form,
+.signup-form {
+    height: 150%;
+    margin-top: -5%;
+    padding-top: 13%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: $accent-color-light;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
 
-    .btn-login {
-        background-color: $primary-color;
-        min-width: 128px;
-    }
+    .login-form-wrapper {
+        margin: 49% 64px 16px;
 
-    footer {
-        margin-top: -64px;
-        padding-left: 64px;
+        .message {
+            display: block;
+            text-align: right;
+            &.message-error {
+                color: #ba2525;
+            }
+            &.message-success {
+                color: #3f9142;
+            }
+        }
     }
 }
 
-.app-login,
-.app-signup {
-    .menu-item a.active {
-        border-bottom: 4px $primary-color solid;
+.login-form-header {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    color: $primary-color;
+
+    span {
+        display: block;
+        &:last-of-type {
+            font-size: 80%;
+        }
+    }
+}
+
+.input-field-wrapper {
+    margin: 32px 0;
+    min-width: 260px;
+}
+
+.btn-login,
+.btn-signup {
+    background-color: $primary-color;
+    min-width: 128px;
+    &:hover {
+        background-color: $primary-color;
     }
 }
 
@@ -118,7 +90,6 @@
     }
     .reset-password-label {
         max-width: 250px;
-        // text-align: center;
         font-size: 18px;
         color: #999999;
     }

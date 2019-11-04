@@ -77,7 +77,11 @@ class UserController extends Controller
                 'email' => 'required|email',
                 'password' => 'required|min:6'
             ]);
-            // TODO: check that the user email is verified
+            $isVerified =  User::where([['email', '=', $request->email], ['email_verified_at', '!=', null]])->exists();
+            if (!$isVerified) {
+                return response()->json(['error' => 'Verify email to login!'],400);
+            }
+            echo $request;
             // set token ttl to 7 days in secs
             // JWTAuth::setTTL(86400);
             $token = JWTAuth::attempt($request->only('email','password'));
@@ -113,8 +117,7 @@ class UserController extends Controller
                 $this->user = User::where([['email', '=', $tokenPayload->sub], ['email_verified_at','=', null]])->first();
                 $this->user->email_verified_at = time();
                 $this->user->save();
-                // TODO: create an email verified plz login view
-                return \redirect('/login');
+                return \view('auth.verify',['message' => 'Email verified👏, you can login now!']);
             }
         } catch (\Throwable $error) {
             // TODO: if the token is expired resend token and inform

@@ -20148,16 +20148,15 @@ function logoutHandler() {
                 resolve('user logged out successfully');
               }
 
-              _context3.next = 13;
+              _context3.next = 12;
               break;
 
             case 9:
               _context3.prev = 9;
               _context3.t0 = _context3["catch"](1);
-              console.log(_context3.t0);
               reject('try again');
 
-            case 13:
+            case 12:
             case "end":
               return _context3.stop();
           }
@@ -20241,7 +20240,8 @@ function init() {
       var email = signupEmailInput.value;
 
       if (!password && !email) {
-        message.textContent = 'email and password required';
+        message.classList.add('message-error');
+        message.textContent = 'Email and Password required';
         return;
       }
 
@@ -20263,7 +20263,8 @@ function init() {
       var email = loginEmailInput.value;
 
       if (!password && !email) {
-        message.textContent = 'email and password required';
+        message.classList.add('message-error');
+        message.textContent = 'Email and Password required';
         return;
       }
 

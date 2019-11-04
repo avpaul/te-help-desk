@@ -29,6 +29,7 @@ body {
 }
 
 #app {
+    height: 100%;
     & > .row {
         margin-bottom: 0;
         height: calc(100% - 64px);
@@ -53,9 +54,14 @@ nav {
     }
 
     .menu-item {
-        a:hover {
-            border-bottom: 4px $primary-color solid;
-            background-color: #ffffff !important;
+        a {
+            &.active {
+                border-bottom: 4px $primary-color solid;
+            }
+            &:hover {
+                border-bottom: 4px $primary-color solid;
+                background-color: #ffffff !important;
+            }
         }
     }
 
@@ -146,4 +152,15 @@ nav {
     border-radius: 50%;
     background-color: $accent-color-light;
     color: #000000;
+}
+
+.app-verify {
+    margin: 254px auto;
+}
+
+.message-error {
+    color: #ba2525;
+}
+.message-success {
+    color: #3f9142;
 }

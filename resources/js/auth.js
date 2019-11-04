@@ -52,7 +52,6 @@ export function logoutHandler() {
                 resolve('user logged out successfully');
             }
         } catch (error) {
-            console.log(error);
             reject('try again');
         }
     });

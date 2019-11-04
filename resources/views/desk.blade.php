@@ -37,9 +37,9 @@
                         <div class="user-initials">hd</div>
                     </div>
                     <button class="btn btn-flat btn-logout">
-                    <i class="zmdi zmdi-lock-outline"></i>&nbsp;
-                        Logout </button>
-                </div>     
+                        <i class="zmdi zmdi-lock-outline"></i>&nbsp;Logout 
+                    </button>
+                    </div>     
                 </div>
             </nav>
 
