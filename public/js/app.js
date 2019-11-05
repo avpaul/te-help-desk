@@ -20016,6 +20016,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var axios = window.axios;
+var urlBase = location.origin;
 function loginHandler(password, email) {
   return new Promise(
   /*#__PURE__*/
@@ -20029,7 +20030,7 @@ function loginHandler(password, email) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              url = 'http://localhost:8000/api/v1/login';
+              url = "".concat(urlBase, "/api/v1/login");
               _context.prev = 1;
               _context.next = 4;
               return axios.post(url, {
@@ -20084,7 +20085,7 @@ function signupHandler(password, email) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              url = "http://localhost:8000/api/v1/register";
+              url = "".concat(urlBase, "/api/v1/register");
               _context2.prev = 1;
               _context2.next = 4;
               return axios.post(url, {
@@ -20135,7 +20136,7 @@ function logoutHandler() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              url = "http://localhost:8000/api/v1/logout";
+              url = "".concat(urlBase, "/api/v1/logout");
               _context3.prev = 1;
               _context3.next = 4;
               return axios.post(url);
@@ -20235,7 +20236,7 @@ function init() {
   };
 
   if (signupButton) {
-    signupButton.addEventListener('click', function () {
+    signupButton.addEventListener('click', function (e) {
       var password = signupPasswordInput.value;
       var email = signupEmailInput.value;
 
@@ -20269,10 +20270,12 @@ function init() {
       }
 
       events.login(password, email).then(function (value) {
-        events.redirect('/');
+        // events.redirect('/');
+        console.log(value);
       })["catch"](function (error) {
+        message.classList.add('message-error');
+
         if (!error || error.toLowerCase() === 'the given data was invalid.') {
-          message.classList.add('message-error');
           message.textContent = 'Email or Password Incorrect';
           return;
         }

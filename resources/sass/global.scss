@@ -34,9 +34,32 @@ body {
         margin-bottom: 0;
         height: calc(100% - 64px);
         overflow: hidden;
-        & > .col {
-            // height: 100%;
-        }
+    }
+}
+
+html.home-page {
+    &,
+    body {
+        min-height: 100%;
+        height: unset;
+    }
+    #app {
+        min-height: 100%;
+        height: unset;
+    }
+    #app > .row {
+        height: unset;
+        min-height: calc(100% - 64px);
+    }
+
+    footer {
+        margin-top: -50px !important;
+    }
+}
+
+html.tickets-page #app {
+    & > .row {
+        height: calc(100% + 32px);
     }
 }
 
@@ -47,6 +70,17 @@ nav {
 
     & > div {
         border-bottom: 1px $accent-color-light solid;
+    }
+
+    .brand-logo {
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+        img {
+            height: 75%;
+            margin-right: 8px;
+        }
     }
 
     #nav-mobile {
@@ -83,6 +117,20 @@ nav {
                 display: inline-block;
                 line-height: 32px;
                 height: 34px;
+            }
+        }
+
+        .btn-dashboard {
+            margin-left: 16px;
+            margin-top: 8px;
+            font-family: inherit;
+            line-height: 32px;
+            background-color: transparent !important;
+            border: $primary-color 1px solid;
+            color: #000000;
+
+            &:hover {
+                background-color: $primary-color;
             }
         }
     }
@@ -155,7 +203,20 @@ nav {
 }
 
 .app-verify {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 254px auto;
+    font-size: 24px;
+    font-weight: 300;
+
+    .btn-login {
+        margin: 16px auto;
+        font-weight: 400;
+        border: $primary-color 1px solid;
+        color: $primary-color !important;
+        background: none !important;
+    }
 }
 
 .message-error {

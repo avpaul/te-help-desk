@@ -1,21 +1,11 @@
-.user-pages {
-    height: 100%;
-
-    .row {
-        & > .col {
-            height: 100%;
-        }
-    }
-}
-
-.user-pages-home {
-    .user-tickets-wrapper {
-        min-height: 100%;
-        padding: 16px 32px;
-        margin-top: 16px;
-        background-color: $accent-color-light;
-        border-radius: 6px;
-    }
+// TODO: remove cols, do normal flex centering
+.user-tickets-wrapper {
+    min-height: 100%;
+    padding: 16px 32px;
+    margin-top: 16px;
+    margin-bottom: 80px;
+    background-color: $accent-color-light;
+    border-radius: 6px;
 
     .user-tickets-header {
         display: flex;
@@ -39,121 +29,126 @@
             }
         }
     }
+}
 
-    .pending-tickets {
+.pending-tickets {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .card {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 1.6%;
+        width: 30%;
+        box-shadow: none !important;
+        border-radius: 4px;
 
-        .card {
-            margin: 1.6%;
-            width: 30%;
-            box-shadow: none !important;
-            border-radius: 4px;
-
-            .card-title {
-                margin: 0;
-                margin-bottom: 16px;
-                font-weight: 600;
-                font-family: 'Source Sans Pro', sans-serif;
-                color: #102a43;
+        .card-title {
+            margin: 0;
+            margin-bottom: 16px;
+            font-weight: 600;
+            font-family: 'Source Sans Pro', sans-serif;
+            color: #102a43;
+            &::first-letter {
+                text-transform: uppercase;
             }
+        }
 
-            .ticket-date {
-                margin: 8px 0;
-                color: #829ab1;
-            }
+        .ticket-date {
+            margin: 8px 0;
+            color: #829ab1;
+        }
 
-            p {
-                font-weight: 400;
-                height: 50px;
-                overflow: hidden;
-                color: #3b3b3b;
-            }
+        p {
+            font-weight: 400;
+            height: 50px;
+            overflow: hidden;
+            color: #3b3b3b;
+        }
 
-            .ticket-conversations-count {
-                padding: 0 16px;
-                color: #3b3b3b;
-            }
+        .ticket-conversations-count {
+            padding: 0 16px;
+            color: #3b3b3b;
+        }
 
-            .card-footer {
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-end;
-                align-items: center;
-                padding: 8px 16px 16px 16px;
+        .card-footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 8px 16px 16px 16px;
 
-                .ticket-status {
-                    padding: 4px 8px;
-                    text-transform: capitalize;
-                    border-radius: 4px;
-                    // font-weight: 600;
+            .ticket-status {
+                padding: 4px 8px;
+                text-transform: capitalize;
+                border-radius: 4px;
 
-                    &.active {
-                        background-color: #c6f7e2;
-                        color: #199473;
-                    }
-
-                    &.pending {
-                        background-color: #fffbea;
-                        color: #f0b429;
-                    }
-
-                    &.closed {
-                        background-color: #ffeeee;
-                        color: #ba2525;
-                    }
+                &.active {
+                    background-color: #c6f7e2;
+                    color: #199473;
                 }
 
-                .btn.btn-icon {
-                    margin-left: 8px;
-                    height: 28px;
-                    background-color: transparent;
-                    color: #829ab1;
-                    i {
-                        line-height: 28px;
-                    }
+                &.pending {
+                    background-color: #fffbea;
+                    color: #f0b429;
+                }
+
+                &.closed {
+                    background-color: #ffeeee;
+                    color: #ba2525;
+                }
+            }
+
+            .btn.btn-icon {
+                margin-left: 8px;
+                height: 28px;
+                background-color: transparent;
+                color: #829ab1;
+                i {
+                    line-height: 28px;
+                }
+                &:hover {
+                    background-color: $accent-color-light;
+                }
+            }
+
+            .dropdown-content {
+                border-radius: 2px;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                    0 3px 1px -2px rgba(0, 0, 0, 0.12),
+                    0 1px 5px 0 rgba(0, 0, 0, 0.2);
+                li {
+                    min-height: 36px;
+                    height: 36px;
+                    line-height: 36px;
+                    padding: 0 8px;
                     &:hover {
                         background-color: $accent-color-light;
                     }
-                }
-
-                .dropdown-content {
-                    border-radius: 2px;
-                    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-                        0 3px 1px -2px rgba(0, 0, 0, 0.12),
-                        0 1px 5px 0 rgba(0, 0, 0, 0.2);
-                    li {
-                        min-height: 36px;
-                        height: 36px;
-                        line-height: 36px;
-                        padding: 0 8px;
-                        &:hover {
-                            background-color: $accent-color-light;
-                        }
-                        .btn {
-                            i {
-                                margin-right: 12px;
-                            }
+                    .btn {
+                        i {
+                            margin-right: 12px;
                         }
                     }
-                    .btn {
-                        padding: 0;
-                        min-width: 100%;
-                        text-transform: capitalize;
-                        color: #829ab1;
-                        &:hover {
-                            background-color: $accent-color-light;
-                        }
-                        i {
-                            font-size: 14px;
-                            width: 14px;
-                        }
-                        span {
-                            display: inline-block;
-                            min-width: 60px;
-                            text-align: left;
-                        }
+                }
+                .btn {
+                    padding: 0;
+                    min-width: 100%;
+                    text-transform: capitalize;
+                    color: #829ab1;
+                    &:hover {
+                        background-color: $accent-color-light;
+                    }
+                    i {
+                        font-size: 14px;
+                        width: 14px;
+                    }
+                    span {
+                        display: inline-block;
+                        min-width: 60px;
+                        text-align: left;
                     }
                 }
             }

@@ -25,12 +25,15 @@ Route::get('/reset-password', function () {
 
 Route::get('/verify-email', 'UserController@verifyEmail', ['title' => 'Verify email']);
 
+Route::get('/verify-success', function() {
+    return \view('auth.verify',['message' => 'Email verified 👏, you can login now!']);
+});
+
 Route::get('/dashboard', 'AdminController@show', ['title' => 'Admin']);
 
 Route::post('/dashboard', ['as' => 'admin.create.user', 'uses' => 'AdminController@createUser']);
 
-
-Route::get('/', 'HomeController@index');
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
  
 Route::get('/tickets','TicketController@index');
 

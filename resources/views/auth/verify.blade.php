@@ -2,7 +2,10 @@
 @section('content')
 <div class="app-verify">
     @isset($message)
-    <div class="message-success">{{$message}}</div>
+    <div>
+        <div class="text-primary">{{$message}}</div>
+        <a href="/login" class="btn btn-login btn-flat">LOGIN</a>
+    </div>
     @endisset
     @isset($error)
     <div class="message-error">{{$error}}</div>

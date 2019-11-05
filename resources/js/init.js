@@ -22,7 +22,7 @@ export function init() {
     };
 
     if (signupButton) {
-        signupButton.addEventListener('click', () => {
+        signupButton.addEventListener('click', e => {
             const password = signupPasswordInput.value;
             const email = signupEmailInput.value;
             if (!password && !email) {
@@ -57,14 +57,15 @@ export function init() {
             events
                 .login(password, email)
                 .then(value => {
-                    events.redirect('/');
+                    // events.redirect('/');
+                    console.log(value);
                 })
                 .catch(error => {
+                    message.classList.add('message-error');
                     if (
                         !error ||
                         error.toLowerCase() === 'the given data was invalid.'
                     ) {
-                        message.classList.add('message-error');
                         message.textContent = 'Email or Password Incorrect';
                         return;
                     }

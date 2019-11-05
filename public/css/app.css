@@ -35,6 +35,30 @@ body {
   overflow: hidden;
 }
 
+html.home-page,
+html.home-page body {
+  min-height: 100%;
+  height: unset;
+}
+
+html.home-page #app {
+  min-height: 100%;
+  height: unset;
+}
+
+html.home-page #app > .row {
+  height: unset;
+  min-height: calc(100% - 64px);
+}
+
+html.home-page footer {
+  margin-top: -50px !important;
+}
+
+html.tickets-page #app > .row {
+  height: calc(100% + 32px);
+}
+
 nav {
   padding-left: 64px;
   padding-right: 64px;
@@ -42,6 +66,17 @@ nav {
 
 nav > div {
   border-bottom: 1px #f0f4f8 solid;
+}
+
+nav .brand-logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+nav .brand-logo img {
+  height: 75%;
+  margin-right: 8px;
 }
 
 nav #nav-mobile {
@@ -77,6 +112,20 @@ nav .nav-actions .btn-logout i {
   display: inline-block;
   line-height: 32px;
   height: 34px;
+}
+
+nav .nav-actions .btn-dashboard {
+  margin-left: 16px;
+  margin-top: 8px;
+  font-family: inherit;
+  line-height: 32px;
+  background-color: transparent !important;
+  border: #003e6b 1px solid;
+  color: #000000;
+}
+
+nav .nav-actions .btn-dashboard:hover {
+  background-color: #003e6b;
 }
 
 .user-profile,
@@ -144,7 +193,20 @@ nav .nav-actions .btn-logout i {
 }
 
 .app-verify {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 254px auto;
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.app-verify .btn-login {
+  margin: 16px auto;
+  font-weight: 400;
+  border: #003e6b 1px solid;
+  color: #003e6b !important;
+  background: none !important;
 }
 
 .message-error {
@@ -263,23 +325,16 @@ nav .nav-actions .btn-logout i {
   color: #999999;
 }
 
-.user-pages {
-  height: 100%;
-}
-
-.user-pages .row > .col {
-  height: 100%;
-}
-
-.user-pages-home .user-tickets-wrapper {
+.user-tickets-wrapper {
   min-height: 100%;
   padding: 16px 32px;
   margin-top: 16px;
+  margin-bottom: 80px;
   background-color: #f0f4f8;
   border-radius: 6px;
 }
 
-.user-pages-home .user-tickets-header {
+.user-tickets-wrapper .user-tickets-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -287,36 +342,39 @@ nav .nav-actions .btn-logout i {
   margin: 0 24px;
 }
 
-.user-pages-home .user-tickets-header .title {
+.user-tickets-wrapper .user-tickets-header .title {
   margin-left: 0;
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 600;
   color: #102a43;
 }
 
-.user-pages-home .user-tickets-header .btn-add-new-ticket {
+.user-tickets-wrapper .user-tickets-header .btn-add-new-ticket {
   background-color: #003e6b;
   color: #ffffff;
 }
 
-.user-pages-home .user-tickets-header .btn-add-new-ticket i {
+.user-tickets-wrapper .user-tickets-header .btn-add-new-ticket i {
   font-size: 14px;
 }
 
-.user-pages-home .pending-tickets {
+.pending-tickets {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.user-pages-home .pending-tickets .card {
+.pending-tickets .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin: 1.6%;
   width: 30%;
   box-shadow: none !important;
   border-radius: 4px;
 }
 
-.user-pages-home .pending-tickets .card .card-title {
+.pending-tickets .card .card-title {
   margin: 0;
   margin-bottom: 16px;
   font-weight: 600;
@@ -324,24 +382,28 @@ nav .nav-actions .btn-logout i {
   color: #102a43;
 }
 
-.user-pages-home .pending-tickets .card .ticket-date {
+.pending-tickets .card .card-title::first-letter {
+  text-transform: uppercase;
+}
+
+.pending-tickets .card .ticket-date {
   margin: 8px 0;
   color: #829ab1;
 }
 
-.user-pages-home .pending-tickets .card p {
+.pending-tickets .card p {
   font-weight: 400;
   height: 50px;
   overflow: hidden;
   color: #3b3b3b;
 }
 
-.user-pages-home .pending-tickets .card .ticket-conversations-count {
+.pending-tickets .card .ticket-conversations-count {
   padding: 0 16px;
   color: #3b3b3b;
 }
 
-.user-pages-home .pending-tickets .card .card-footer {
+.pending-tickets .card .card-footer {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -349,79 +411,79 @@ nav .nav-actions .btn-logout i {
   padding: 8px 16px 16px 16px;
 }
 
-.user-pages-home .pending-tickets .card .card-footer .ticket-status {
+.pending-tickets .card .card-footer .ticket-status {
   padding: 4px 8px;
   text-transform: capitalize;
   border-radius: 4px;
 }
 
-.user-pages-home .pending-tickets .card .card-footer .ticket-status.active {
+.pending-tickets .card .card-footer .ticket-status.active {
   background-color: #c6f7e2;
   color: #199473;
 }
 
-.user-pages-home .pending-tickets .card .card-footer .ticket-status.pending {
+.pending-tickets .card .card-footer .ticket-status.pending {
   background-color: #fffbea;
   color: #f0b429;
 }
 
-.user-pages-home .pending-tickets .card .card-footer .ticket-status.closed {
+.pending-tickets .card .card-footer .ticket-status.closed {
   background-color: #ffeeee;
   color: #ba2525;
 }
 
-.user-pages-home .pending-tickets .card .card-footer .btn.btn-icon {
+.pending-tickets .card .card-footer .btn.btn-icon {
   margin-left: 8px;
   height: 28px;
   background-color: transparent;
   color: #829ab1;
 }
 
-.user-pages-home .pending-tickets .card .card-footer .btn.btn-icon i {
+.pending-tickets .card .card-footer .btn.btn-icon i {
   line-height: 28px;
 }
 
-.user-pages-home .pending-tickets .card .card-footer .btn.btn-icon:hover {
+.pending-tickets .card .card-footer .btn.btn-icon:hover {
   background-color: #f0f4f8;
 }
 
-.user-pages-home .pending-tickets .card .card-footer .dropdown-content {
+.pending-tickets .card .card-footer .dropdown-content {
   border-radius: 2px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
-.user-pages-home .pending-tickets .card .card-footer .dropdown-content li {
+.pending-tickets .card .card-footer .dropdown-content li {
   min-height: 36px;
   height: 36px;
   line-height: 36px;
   padding: 0 8px;
 }
 
-.user-pages-home .pending-tickets .card .card-footer .dropdown-content li:hover {
+.pending-tickets .card .card-footer .dropdown-content li:hover {
   background-color: #f0f4f8;
 }
 
-.user-pages-home .pending-tickets .card .card-footer .dropdown-content li .btn i {
+.pending-tickets .card .card-footer .dropdown-content li .btn i {
   margin-right: 12px;
 }
 
-.user-pages-home .pending-tickets .card .card-footer .dropdown-content .btn {
+.pending-tickets .card .card-footer .dropdown-content .btn {
   padding: 0;
   min-width: 100%;
   text-transform: capitalize;
   color: #829ab1;
 }
 
-.user-pages-home .pending-tickets .card .card-footer .dropdown-content .btn:hover {
+.pending-tickets .card .card-footer .dropdown-content .btn:hover {
   background-color: #f0f4f8;
 }
 
-.user-pages-home .pending-tickets .card .card-footer .dropdown-content .btn i {
+.pending-tickets .card .card-footer .dropdown-content .btn i {
   font-size: 14px;
   width: 14px;
 }
 
-.user-pages-home .pending-tickets .card .card-footer .dropdown-content .btn span {
+.pending-tickets .card .card-footer .dropdown-content .btn span {
   display: inline-block;
   min-width: 60px;
   text-align: left;
@@ -531,34 +593,53 @@ nav .nav-actions .btn-logout i {
   background-color: #ffeeee;
 }
 
-.user-pages-ticket {
-  height: calc(100% - 22px);
-}
-
-.user-pages-ticket .user-tickets-wrapper,
-.user-pages-ticket .user-single-ticket-wrapper {
-  height: 100%;
+.user-tickets-sidebar-wrapper,
+.user-single-ticket-wrapper {
+  height: calc(100% - 96px);
   margin-top: 16px;
+  padding-bottom: 70px;
   background-color: #f0f4f8;
   border-radius: 6px;
 }
 
-.user-pages-ticket .user-tickets-wrapper {
-  padding: 16px;
+.user-tickets-sidebar-wrapper {
   margin-left: 40px !important;
+  overflow: hidden;
 }
 
-.user-pages-ticket .user-single-ticket-wrapper {
+.user-tickets-sidebar-wrapper .user-tickets-header .title {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  color: #102a43;
+}
+
+.user-tickets-sidebar-wrapper .user-ticket-group {
+  height: calc(100% - 60px);
+  overflow: scroll;
+}
+
+.user-tickets-sidebar-wrapper .user-ticket-group::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.user-tickets-sidebar-wrapper .user-ticket-group::-webkit-scrollbar-thumb {
+  background-color: #cbd2d9;
+  border-radius: 5px;
+}
+
+.user-single-ticket-wrapper {
   position: relative;
-  padding: 16px 32px;
-  margin-left: 32px !important;
+  padding: 16px 32px !important;
+  margin-left: 16px !important;
   margin-right: 24px;
 }
 
-.user-pages-ticket .user-ticket-snap {
+.user-ticket-snap {
   display: block;
   padding: 8px;
-  margin: 16px 0;
+  margin: 16px 8px 16px 0;
   background-color: #ffffff;
   color: #3b3b3b;
   border-radius: 2px;
@@ -568,102 +649,117 @@ nav .nav-actions .btn-logout i {
   transition: box-shadow ease-out 0.2s;
 }
 
-.user-pages-ticket .user-ticket-snap.active {
+.user-ticket-snap.active {
   border-bottom: 4px solid #003e6b;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.user-pages-ticket .user-ticket-snap:hover {
+.user-ticket-snap:first-of-type {
+  margin-top: 0;
+}
+
+.user-ticket-snap:last-of-type {
+  margin-bottom: 0;
+}
+
+.user-ticket-snap:hover {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
-.user-pages-ticket .user-ticket-snap .user-ticket-snap-footer {
+.user-ticket-snap .title::first-letter {
+  text-transform: uppercase;
+}
+
+.user-ticket-snap .user-ticket-snap-footer {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
 }
 
-.user-pages-ticket .user-ticket-snap .time {
+.user-ticket-snap .time {
   font-size: 14px;
   text-transform: capitalize;
   color: #829ab1;
   line-height: 16px;
 }
 
-.user-pages-ticket .user-ticket-snap .status {
+.user-ticket-snap .status {
   width: 8px;
   height: 8px;
   margin: 8px;
   border-radius: 50%;
 }
 
-.user-pages-ticket .user-ticket-snap .status.active {
+.user-ticket-snap .status.active {
   background-color: #199473;
 }
 
-.user-pages-ticket .user-ticket-snap .status.pending {
+.user-ticket-snap .status.pending {
   background-color: #f0b429;
 }
 
-.user-pages-ticket .user-ticket-snap .status.closed {
+.user-ticket-snap .status.closed {
   background-color: #ba2525;
 }
 
-.user-pages-ticket .user-single-ticket {
+.user-single-ticket {
   height: calc(100% - 16px);
   padding: 16px;
   background-color: #ffffff;
   border-radius: 2px;
 }
 
-.user-pages-ticket .user-single-ticket .user-ticket-header {
+.user-single-ticket .user-ticket-header {
   color: #102a43;
-  padding-top: 8px;
   padding-bottom: 0px;
 }
 
-.user-pages-ticket .user-single-ticket .user-ticket-header .title {
+.user-single-ticket .user-ticket-header .title {
   margin: 0;
 }
 
-.user-pages-ticket .user-single-ticket .user-ticket-header .ticket-meta {
+.user-single-ticket .user-ticket-header .title::first-letter {
+  text-transform: uppercase;
+}
+
+.user-single-ticket .user-ticket-header .ticket-meta {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.user-pages-ticket .user-single-ticket .user-ticket-header .ticket-meta .ticket-date {
+.user-single-ticket .user-ticket-header .ticket-meta .ticket-date {
   margin: 8px 0;
   color: #829ab1;
 }
 
-.user-pages-ticket .user-single-ticket .user-ticket-header .ticket-meta .ticket-conversations-count {
+.user-single-ticket .user-ticket-header .ticket-meta .ticket-conversations-count {
   position: relative;
   padding: 0 16px;
   color: #3b3b3b;
 }
 
-.user-pages-ticket .user-single-ticket .user-ticket-header .ticket-meta .ticket-status {
+.user-single-ticket .user-ticket-header .ticket-meta .ticket-status {
   padding: 4px 8px;
   text-transform: capitalize;
   border-radius: 4px;
 }
 
-.user-pages-ticket .user-single-ticket .user-ticket-header .ticket-meta .ticket-status.active {
+.user-single-ticket .user-ticket-header .ticket-meta .ticket-status.active {
   color: #199473;
 }
 
-.user-pages-ticket .user-single-ticket .user-ticket-header .ticket-meta .ticket-status.pending {
+.user-single-ticket .user-ticket-header .ticket-meta .ticket-status.pending {
   color: #f0b429;
 }
 
-.user-pages-ticket .user-single-ticket .user-ticket-header .ticket-meta .ticket-status.closed {
+.user-single-ticket .user-ticket-header .ticket-meta .ticket-status.closed {
   color: #ba2525;
 }
 
-.user-pages-ticket .user-ticket-conversations-shadow-top {
+.user-ticket-conversations-shadow-top {
   position: -webkit-sticky;
   position: sticky;
   left: 0;
@@ -673,25 +769,25 @@ nav .nav-actions .btn-logout i {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14) inset;
 }
 
-.user-pages-ticket .user-ticket-conversations {
+.user-ticket-conversations {
   padding: 8px 8px 16px 8px;
   height: calc(100% - 120px);
   overflow-y: scroll;
 }
 
-.user-pages-ticket .user-ticket-conversations::-webkit-scrollbar {
+.user-ticket-conversations::-webkit-scrollbar {
   margin-left: 8px;
   width: 8px;
   background-color: transparent;
   border-radius: 5px;
 }
 
-.user-pages-ticket .user-ticket-conversations::-webkit-scrollbar-thumb {
+.user-ticket-conversations::-webkit-scrollbar-thumb {
   background-color: #cbd2d9;
   border-radius: 5px;
 }
 
-.user-pages-ticket .user-ticket-conversation {
+.user-ticket-conversation {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -699,7 +795,7 @@ nav .nav-actions .btn-logout i {
   margin-bottom: 16px;
 }
 
-.user-pages-ticket .user-ticket-conversation .conversation-owner {
+.user-ticket-conversation .conversation-owner {
   height: 48px;
   width: 48px;
   margin-right: 16px;
@@ -707,11 +803,11 @@ nav .nav-actions .btn-logout i {
   overflow: hidden;
 }
 
-.user-pages-ticket .user-ticket-conversation .conversation-owner img {
+.user-ticket-conversation .conversation-owner img {
   width: 100%;
 }
 
-.user-pages-ticket .user-ticket-conversation .conversation-owner .user-initials {
+.user-ticket-conversation .conversation-owner .user-initials {
   height: 100%;
   width: 100%;
   text-transform: uppercase;
@@ -722,7 +818,7 @@ nav .nav-actions .btn-logout i {
   background-color: #f0f4f8;
 }
 
-.user-pages-ticket .user-ticket-conversation .conversation-content {
+.user-ticket-conversation .conversation-content {
   padding: 16px;
   max-width: 500px;
   font-size: 18px;
@@ -734,22 +830,22 @@ nav .nav-actions .btn-logout i {
   border-bottom-left-radius: 0;
 }
 
-.user-pages-ticket .user-ticket-conversation.current-user {
+.user-ticket-conversation.current-user {
   flex-direction: row-reverse;
 }
 
-.user-pages-ticket .user-ticket-conversation.current-user .conversation-owner {
+.user-ticket-conversation.current-user .conversation-owner {
   margin-left: 16px;
   margin-right: 0;
 }
 
-.user-pages-ticket .user-ticket-conversation.current-user .conversation-content {
+.user-ticket-conversation.current-user .conversation-content {
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 0;
   background-color: #003e6b;
 }
 
-.user-pages-ticket .ticket-footer {
+.ticket-footer {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -757,38 +853,38 @@ nav .nav-actions .btn-logout i {
   padding-top: 8px;
 }
 
-.user-pages-ticket .ticket-footer .btn {
+.ticket-footer .btn {
   text-transform: uppercase;
   color: #003e6b;
 }
 
-.user-pages-ticket .ticket-footer .btn:hover {
+.ticket-footer .btn:hover {
   background-color: #f0f4f8;
 }
 
-.user-pages-ticket .ticket-footer .btn i {
+.ticket-footer .btn i {
   font-size: 14px;
   width: 14px;
 }
 
-.user-pages-ticket .ticket-footer .btn span {
+.ticket-footer .btn span {
   display: inline-block;
   min-width: 60px;
   text-align: left;
 }
 
-.user-pages-ticket .ticket-footer .btn.btn-close {
+.ticket-footer .btn.btn-close {
   margin-right: 16px;
   color: #ba2525;
   background-color: #ffeeee;
 }
 
-.user-pages-ticket .ticket-footer .btn.btn-reply {
+.ticket-footer .btn.btn-reply {
   color: #199473;
   background-color: #c6f7e2;
 }
 
-.user-pages-ticket .ticket-reply {
+.ticket-reply {
   display: none;
   position: absolute;
   bottom: 32px;
@@ -800,11 +896,11 @@ nav .nav-actions .btn-logout i {
   z-index: 1000;
 }
 
-.user-pages-ticket .ticket-reply.active {
+.ticket-reply.active {
   display: block;
 }
 
-.user-pages-ticket .ticket-reply .ticket-reply-editor {
+.ticket-reply .ticket-reply-editor {
   padding: 16px;
   font-size: 18px;
   height: 154px;
@@ -815,80 +911,76 @@ nav .nav-actions .btn-logout i {
   resize: none;
 }
 
-.user-pages-ticket .ticket-reply .ticket-reply-editor:focus {
+.ticket-reply .ticket-reply-editor:focus {
   outline: none;
 }
 
-.user-pages-ticket .ticket-reply .ticket-reply-editor:empty::before {
+.ticket-reply .ticket-reply-editor:empty::before {
   content: attr(placeholder);
   color: #cbd2d9;
 }
 
-.user-pages-ticket .ticket-reply .ticket-reply-editor::-webkit-scrollbar {
+.ticket-reply .ticket-reply-editor::-webkit-scrollbar {
   margin-left: 8px;
   width: 8px;
   background-color: transparent;
 }
 
-.user-pages-ticket .ticket-reply .ticket-reply-editor::-webkit-scrollbar-thumb {
+.ticket-reply .ticket-reply-editor::-webkit-scrollbar-thumb {
   background-color: #cbd2d9;
   border-radius: 5px;
 }
 
-.user-pages-ticket .ticket-reply .ticket-reply-footer {
+.ticket-reply .ticket-reply-footer {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
 }
 
-.user-pages-ticket .ticket-reply .ticket-reply-footer .btn {
+.ticket-reply .ticket-reply-footer .btn {
   margin: 8px;
   text-transform: uppercase;
   color: #003e6b;
   background-color: #f0f4f8;
 }
 
-.user-pages-ticket .ticket-reply .ticket-reply-footer .btn i {
+.ticket-reply .ticket-reply-footer .btn i {
   font-size: 14px;
   width: 14px;
 }
 
-.user-pages-ticket .ticket-reply .ticket-reply-footer .btn span {
+.ticket-reply .ticket-reply-footer .btn span {
   display: inline-block;
   min-width: 60px;
   text-align: left;
 }
 
-.user-pages-ticket .ticket-reply .ticket-reply-footer .btn.btn-delete {
+.ticket-reply .ticket-reply-footer .btn.btn-delete {
   color: #ba2525;
   background-color: #ffeeee;
 }
 
-.desk-pages {
-  height: 100%;
-}
-
-.desk-pages-home .app-container {
+.app-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.desk-pages-home .desk-tickets-wrapper {
+.desk-tickets-wrapper {
   padding: 16px 32px;
   margin-top: 16px;
   background-color: #f0f4f8;
   border-radius: 6px;
 }
 
-.desk-pages-home .desk-tickets-header .title {
+.desk-tickets-wrapper .desk-tickets-header .title {
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 600;
   color: #102a43;
 }
 
-.desk-pages-home .ticket-section-header {
+.desk-tickets-wrapper .ticket-section-header {
   position: relative;
   height: 1px;
   width: 100%;
@@ -896,7 +988,7 @@ nav .nav-actions .btn-logout i {
   background-color: #b1b1b1;
 }
 
-.desk-pages-home .ticket-section-header > div {
+.desk-tickets-wrapper .ticket-section-header > div {
   position: absolute;
   left: 50%;
   top: -16px;
@@ -912,12 +1004,12 @@ nav .nav-actions .btn-logout i {
   transform: translateX(-50%);
 }
 
-.desk-pages-home .pending-tickets {
+.desk-tickets-wrapper .pending-tickets {
   display: flex;
   flex-direction: column;
 }
 
-.desk-pages-home .pending-tickets .ticket {
+.desk-tickets-wrapper .pending-tickets .ticket {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -929,26 +1021,26 @@ nav .nav-actions .btn-logout i {
   border-bottom: 1px solid #f0f4f8;
 }
 
-.desk-pages-home .pending-tickets .ticket:hover {
+.desk-tickets-wrapper .pending-tickets .ticket:hover {
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
 }
 
-.desk-pages-home .pending-tickets .ticket:first-of-type {
+.desk-tickets-wrapper .pending-tickets .ticket:first-of-type {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
 }
 
-.desk-pages-home .pending-tickets .ticket:last-of-type {
+.desk-tickets-wrapper .pending-tickets .ticket:last-of-type {
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
   border-bottom: none;
 }
 
-.desk-pages-home .pending-tickets .ticket .ticket-owner {
+.desk-tickets-wrapper .pending-tickets .ticket .ticket-owner {
   margin-right: 16px;
 }
 
-.desk-pages-home .pending-tickets .ticket .ticket-owner-name {
+.desk-tickets-wrapper .pending-tickets .ticket .ticket-owner-name {
   width: 172px;
   padding-right: 16px;
   font-size: 18px;
@@ -958,8 +1050,8 @@ nav .nav-actions .btn-logout i {
   color: #102a43;
 }
 
-.desk-pages-home .pending-tickets .ticket .ticket-title,
-.desk-pages-home .pending-tickets .ticket .ticket-latest-message {
+.desk-tickets-wrapper .pending-tickets .ticket .ticket-title,
+.desk-tickets-wrapper .pending-tickets .ticket .ticket-latest-message {
   width: 450px;
   font-size: 18px;
   overflow: hidden;
@@ -968,45 +1060,45 @@ nav .nav-actions .btn-logout i {
   color: #102a43;
 }
 
-.desk-pages-home .pending-tickets .ticket .ticket-latest-message {
+.desk-tickets-wrapper .pending-tickets .ticket .ticket-latest-message {
   width: 200px;
   font-size: 16px;
   text-overflow: ellipsis;
   color: #829ab1;
 }
 
-.desk-pages-home .pending-tickets .ticket .ticket-status {
+.desk-tickets-wrapper .pending-tickets .ticket .ticket-status {
   margin: 0 16px;
   width: 8px;
   height: 8px;
   border-radius: 50%;
 }
 
-.desk-pages-home .pending-tickets .ticket .ticket-status.active {
+.desk-tickets-wrapper .pending-tickets .ticket .ticket-status.active {
   background-color: #199473;
 }
 
-.desk-pages-home .pending-tickets .ticket .ticket-status.pending {
+.desk-tickets-wrapper .pending-tickets .ticket .ticket-status.pending {
   background-color: #f0b429;
 }
 
-.desk-pages-home .pending-tickets .ticket .ticket-status.closed {
+.desk-tickets-wrapper .pending-tickets .ticket .ticket-status.closed {
   background-color: #ba2525;
 }
 
-.desk-pages-home .pending-tickets .ticket .ticket-date {
+.desk-tickets-wrapper .pending-tickets .ticket .ticket-date {
   margin: 8px 0;
   color: #3b3b3b;
   font-size: 14px;
   text-transform: uppercase;
 }
 
-.desk-pages-home .pending-tickets .ticket .ticket-conversations-count {
+.desk-tickets-wrapper .pending-tickets .ticket .ticket-conversations-count {
   padding: 0 16px;
   color: #3b3b3b;
 }
 
-.desk-pages-home .pending-tickets .ticket .card-footer {
+.desk-tickets-wrapper .pending-tickets .ticket .card-footer {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -1014,52 +1106,52 @@ nav .nav-actions .btn-logout i {
   padding: 8px 16px 16px 16px;
 }
 
-.desk-pages-home .pending-tickets .ticket .card-footer .btn.btn-icon {
+.desk-tickets-wrapper .pending-tickets .ticket .card-footer .btn.btn-icon {
   margin-left: 8px;
   height: 28px;
   background-color: transparent;
   color: #829ab1;
 }
 
-.desk-pages-home .pending-tickets .ticket .card-footer .btn.btn-icon i {
+.desk-tickets-wrapper .pending-tickets .ticket .card-footer .btn.btn-icon i {
   line-height: 28px;
 }
 
-.desk-pages-home .pending-tickets .ticket .card-footer .btn.btn-icon:hover {
+.desk-tickets-wrapper .pending-tickets .ticket .card-footer .btn.btn-icon:hover {
   background-color: #f0f4f8;
 }
 
-.desk-pages-home .pending-tickets .ticket .card-footer .dropdown-content {
+.desk-tickets-wrapper .pending-tickets .ticket .card-footer .dropdown-content {
   border-radius: 2px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
-.desk-pages-home .pending-tickets .ticket .card-footer .dropdown-content li {
+.desk-tickets-wrapper .pending-tickets .ticket .card-footer .dropdown-content li {
   min-height: 36px;
   padding: 0 8px;
 }
 
-.desk-pages-home .pending-tickets .ticket .card-footer .dropdown-content li:hover {
+.desk-tickets-wrapper .pending-tickets .ticket .card-footer .dropdown-content li:hover {
   background-color: #f0f4f8;
 }
 
-.desk-pages-home .pending-tickets .ticket .card-footer .dropdown-content .btn {
+.desk-tickets-wrapper .pending-tickets .ticket .card-footer .dropdown-content .btn {
   padding: 0;
   min-width: 100%;
   text-transform: capitalize;
   color: #829ab1;
 }
 
-.desk-pages-home .pending-tickets .ticket .card-footer .dropdown-content .btn:hover {
+.desk-tickets-wrapper .pending-tickets .ticket .card-footer .dropdown-content .btn:hover {
   background-color: #f0f4f8;
 }
 
-.desk-pages-home .pending-tickets .ticket .card-footer .dropdown-content .btn i {
+.desk-tickets-wrapper .pending-tickets .ticket .card-footer .dropdown-content .btn i {
   font-size: 14px;
   width: 14px;
 }
 
-.desk-pages-home .pending-tickets .ticket .card-footer .dropdown-content .btn span {
+.desk-tickets-wrapper .pending-tickets .ticket .card-footer .dropdown-content .btn span {
   display: inline-block;
   min-width: 60px;
   text-align: left;
@@ -1116,5 +1208,15 @@ nav .nav-actions .btn-logout i {
 footer {
   margin-top: -64px;
   padding-left: 64px;
+}
+
+footer p {
+  padding: 0;
+  margin: 0;
+}
+
+html.home-page footer {
+  margin-top: 16px !important;
+  margin-bottom: 16px;
 }
 

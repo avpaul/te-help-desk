@@ -1,8 +1,9 @@
 const axios = window.axios;
+const urlBase = location.origin;
 
 export function loginHandler(password, email) {
     return new Promise(async (resolve, reject) => {
-        const url = 'http://localhost:8000/api/v1/login';
+        const url = `${urlBase}/api/v1/login`;
 
         try {
             const { status } = await axios.post(url, {
@@ -23,7 +24,7 @@ export function loginHandler(password, email) {
 
 export function signupHandler(password, email) {
     return new Promise(async (resolve, reject) => {
-        const url = `http://localhost:8000/api/v1/register`;
+        const url = `${urlBase}/api/v1/register`;
 
         try {
             const { status } = await axios.post(url, {
@@ -44,7 +45,7 @@ export function signupHandler(password, email) {
 
 export function logoutHandler() {
     return new Promise(async (resolve, reject) => {
-        const url = `http://localhost:8000/api/v1/logout`;
+        const url = `${urlBase}/api/v1/logout`;
 
         try {
             const { status } = await axios.post(url);

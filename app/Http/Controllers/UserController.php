@@ -44,10 +44,10 @@ class UserController extends Controller
             // create a token for email verification
             $payload = array(
                 "iat" => time(),
-                "exp" => time() + 3600000,
+                "exp" => time() + 7200000,
                 "sub" => $this->user->email,
-                "iss" => 'localhost',
-                "aud" => 'localhost',
+                "iss" => env('APP_URL'),
+                "aud" => env('APP_URL'),
             );
             $verificationToken = JWT::encode($payload,env('JWT_SECRET'),'HS256');
             $verificationLink = config('app.url')."/verify-email?token=".$verificationToken;
@@ -81,14 +81,12 @@ class UserController extends Controller
             if (!$isVerified) {
                 return response()->json(['error' => 'Verify email to login!'],400);
             }
-            echo $request;
-            // set token ttl to 7 days in secs
-            // JWTAuth::setTTL(86400);
+
+            // TODO JWTAuth::setTTL(86400);
             $token = JWTAuth::attempt($request->only('email','password'));
             if ($token) {
                 // create token cookie
-                // $authCookie = cookie('token',$token,10080,'/',$request->getHttpHost(),false,false,false);
-                $authCookie = cookie('token',$token,10080,'/','localhost',false,false,false);
+                $authCookie = cookie('token',$token,10080,'/',env('APP_URL'));
                 return response()->json(['message' => 'user authenticated'],200)->withCookie($authCookie);
 
             } else {
@@ -117,23 +115,22 @@ class UserController extends Controller
                 $this->user = User::where([['email', '=', $tokenPayload->sub], ['email_verified_at','=', null]])->first();
                 $this->user->email_verified_at = time();
                 $this->user->save();
-                return \view('auth.verify',['message' => 'Email verified👏, you can login now!']);
+                return \redirect('/verify-success');
             }
         } catch (\Throwable $error) {
             // TODO: if the token is expired resend token and inform
-            echo $error;
+            return \view('auth.verify',['error' => 'error!']);
         }
      }
-
+        
      public function logout(Request $request)
      {
         try {
             $token = $request->cookie('token');
             JWTAuth::setToken($token);
-            JWTAuth::logout();
-            return \response()->json(['message' => 'logout successful'],200)->withCookie(Cookie::forget('token'));
+            JWTAuth::invalidate();
+            return \response()->json(['message' => 'logout successful'],200)->withCookie(\Cookie::forget('token'));
         } catch (\Throwable $error) {
-            echo $error;
             return \response()->json(['message' => 'try again'],400);
         }
      }

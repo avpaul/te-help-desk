@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="{{Route::currentRouteName() === 'home' ? 'home-page' : ''}}{{strpos(url()->current(), '/tickets/') ? 'tickets-page' : ''}}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,8 +12,8 @@
     <title>{{ config('app.name', 'HelpDesk')}}</title>
     @endisset
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <!-- Icon Font -->
@@ -40,7 +40,10 @@
     <div id="app">
         <nav class="transparent z-depth-0">
             <div class="nav-wrapper ">
-                <a href="{{ url('/') }}" class="brand-logo text-primary ">HELP DESK</a>
+                <a href="{{ url('/') }}" class="brand-logo text-primary ">
+                    <img src="{{asset('techenfold-logo.png')}}"/>
+                    HELP DESK
+                </a>
                         <!-- Authentication -->
                 @guest
                 <ul id="nav-mobile" class="right  ">
@@ -57,6 +60,9 @@
                     <div class="user-profile ">
                         <div class="user-initials">hd</div>
                     </div>
+                    @if (getUser()->role === 'admin')
+                    <a href="/dashboard" class="btn btn-flat btn-dashboard">Dashboard</a>
+                    @endif
                     <button class="btn btn-flat btn-logout">
                         <i class="zmdi zmdi-lock-outline"></i>&nbsp;Logout 
                     </button>
@@ -72,7 +78,5 @@
             <p class="center-align grey-text">&copy; 2019 TECHENFOLD</p>
         </footer>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="/js/app.js"></script>
 </body>
 </html>
