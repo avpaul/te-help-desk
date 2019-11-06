@@ -60,7 +60,7 @@
 <div class="email__wrapper--panel">
     <div>
         <div class="img-wrapper img-email">
-            <img src="https://image.flaticon.com/icons/svg/1034/1034299.svg"/>
+            <img src="{{asset('/email.png')}}"/>
         </div>
         <h2 class="tagline">Verify your email address</h2>
         <p class="tagline-description">

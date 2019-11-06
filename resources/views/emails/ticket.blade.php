@@ -77,7 +77,7 @@
 <div class="email__wrapper--panel">
     <div>
         <div class="img-wrapper img-email">
-            <img src="https://image.flaticon.com/icons/svg/2227/2227574.svg"/>
+            <img src="{{asset('/message.png')}}"/>
         </div>
         <h2 class="tagline">{{$subject}}</h2>
         <div class="ticket__title--label">Ticket title:</div>

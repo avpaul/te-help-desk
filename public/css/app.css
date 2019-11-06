@@ -202,6 +202,8 @@ nav .nav-actions .btn-dashboard:hover {
 }
 
 .app-verify .btn-login {
+  display: block;
+  max-width: 128px;
   margin: 16px auto;
   font-weight: 400;
   border: #003e6b 1px solid;

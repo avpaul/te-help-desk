@@ -211,6 +211,8 @@ nav {
     font-weight: 300;
 
     .btn-login {
+        display: block;
+        max-width: 128px;
         margin: 16px auto;
         font-weight: 400;
         border: $primary-color 1px solid;
