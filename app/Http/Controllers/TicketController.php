@@ -34,7 +34,7 @@ class TicketController extends Controller
             // TODO: validate ticket content before request and disable auto fill
             $request->validate([
                 'ticketTitle' => 'required|min:10|max:165',
-                'ticketContent' => 'required|min:25',
+                'ticketContent' => 'required',
             ]);
 
             $this->ticket->user  = $user['sub'];

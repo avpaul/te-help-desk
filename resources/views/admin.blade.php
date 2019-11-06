@@ -30,8 +30,8 @@
             @isset($error)
             <div class="error-message">{{$error}}</div>
             @endisset
-            @isset($message)
-            <div class="success-message">{{$message}}</div>
+            @if(session('message'))
+            <div class="success-message">{{session('message')}}</div>
             @endisset
         </form>
     </div>

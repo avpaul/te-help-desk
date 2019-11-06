@@ -148,12 +148,15 @@
                             placeholder="Ticket title"
                             class="ticket-title"
                             name="ticketTitle"
+                            required
+                            min="10"
                         />
 
                         <textarea
                             class="ticket-editor"
                             placeholder="What is the problem?"
                             name="ticketContent"
+                            required
                         ></textarea>
                     </div>
 

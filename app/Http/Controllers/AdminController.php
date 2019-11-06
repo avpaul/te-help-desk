@@ -74,7 +74,7 @@ class AdminController extends Controller
                         'link' => $verificationLink, 
                         'email' => $this->user->email
                     ]));
-                return \redirect('/dashboard', ['message' => 'User created!']);
+                return \redirect('/dashboard')->with(['message' => 'User created! Check inbox for verification email!']);
             }
         } catch (\Throwable $error) {
            if ($error instanceof ValidationException) 
