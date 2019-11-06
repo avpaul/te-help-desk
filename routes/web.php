@@ -26,7 +26,7 @@ Route::get('/reset-password', function () {
 Route::get('/verify-email', 'UserController@verifyEmail', ['title' => 'Verify email']);
 
 Route::get('/verify-success', function() {
-    return \view('auth.verify',['message' => 'Email verified 👏, you can login now!']);
+    return \view('auth.verify',['message' => 'Email verified 👏🎊, you can login now!']);
 });
 
 Route::get('/dashboard', 'AdminController@show', ['title' => 'Admin']);
@@ -46,3 +46,4 @@ Route::put('/tickets/{id}',['as' => 'tickets.update','uses' => 'TicketController
 Route::delete('/tickets/{id}',['as'=> 'tickets.destroy', 'uses' => 'TicketController@destroy']);
 
 Route::post('/tickets/{id}/conversations',['as' => 'conversation.post','uses' => 'ConversationController@store']);
+
