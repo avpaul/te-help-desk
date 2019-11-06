@@ -20270,8 +20270,7 @@ function init() {
       }
 
       events.login(password, email).then(function (value) {
-        // events.redirect('/');
-        console.log(value);
+        events.redirect('/');
       })["catch"](function (error) {
         message.classList.add('message-error');
 

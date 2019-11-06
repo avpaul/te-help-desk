@@ -86,7 +86,7 @@ class UserController extends Controller
             $token = JWTAuth::attempt($request->only('email','password'));
             if ($token) {
                 // create token cookie
-                $authCookie = cookie('token',$token,10080,'/',env('APP_URL'));
+                $authCookie = cookie('token',$token,10080,'/');
                 return response()->json(['message' => 'user authenticated'],200)->withCookie($authCookie);
 
             } else {

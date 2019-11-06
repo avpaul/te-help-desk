@@ -57,8 +57,7 @@ export function init() {
             events
                 .login(password, email)
                 .then(value => {
-                    // events.redirect('/');
-                    console.log(value);
+                    events.redirect('/');
                 })
                 .catch(error => {
                     message.classList.add('message-error');
