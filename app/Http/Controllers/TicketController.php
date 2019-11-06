@@ -43,7 +43,7 @@ class TicketController extends Controller
             $this->ticket->save();
             // create the first conversation 
             $this->ticket->addConversation($this->ticket->id,$user['sub'],$request->ticketContent);
-            $allSupportUsers = User::where('role', '=', 'support')->get();
+            $allSupportUsers = User::where('role', 'support')->orWhere('role', 'admin')->get();
             $allSupportUsers->each(function($supportUser) use ($user)
                 {
                     Mail::to($supportUser->email)->send( 
@@ -90,7 +90,7 @@ class TicketController extends Controller
                     }
                 ])->get();
                 // get main ticket
-                $mainTicket = Ticket::where([['id','=',$id],['user', '=', $userId]])->with(['conversations' => function ($query)
+                $mainTicket = Ticket::where([['id',$id],['user', $userId]])->with(['conversations' => function ($query)
                 {
                     $query->orderBy('updated_at','asc');
                 }])->first();
@@ -132,10 +132,10 @@ class TicketController extends Controller
             
                 $userId = $user['sub'];
                 if($user['role'] === 'user'){
-                    $ticket = Ticket::where([['id', '=', $id], ['user', '=', $userId]])->first();
+                    $ticket = Ticket::where([['id', $id], ['user', $userId]])->first();
                 }
                 if($user['role'] === 'admin'){
-                    $ticket = Ticket::where('id', '=', $id)->first();
+                    $ticket = Ticket::where('id', $id)->first();
                 }
                 if (isset($ticket)) {
                     $ticket->status = $request->status;
@@ -176,7 +176,7 @@ class TicketController extends Controller
             if($user['role'] === 'user')
             {
                 $userId = $user['sub'];
-                $ticket = Ticket::where([['id', '=', $id], ['user', '=', $userId]])->first();
+                $ticket = Ticket::where([['id', $id], ['user', $userId]])->first();
                 if (isset($ticket)) {
                     $ticket->status = 'closed';
                     $ticket->save();
