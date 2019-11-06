@@ -59,14 +59,13 @@ class TicketController extends Controller
             );
             return response()->redirectTo('/');
         } catch (\Throwable $error) {
-            echo $error;
-            // $errors = $error->getMessages();
-            // if ($errors) {
-            //     $errorMessage = array_key_first($errors);
-            //     return \response()->withError($errorMessage); 
-            // }
+            $errors = $error->getMessages();
+            if ($errors) {
+                $errorMessage = array_key_first($errors);
+                return \response()->withError($errorMessage); 
+            }
 
-            // return \response()->withError();
+            return \response()->withError();
         }
     }
 

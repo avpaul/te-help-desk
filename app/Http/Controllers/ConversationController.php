@@ -63,14 +63,13 @@ class ConversationController extends Controller
             // create the first conversation 
             return response()->redirectTo('/tickets/'.$id);
         } catch (\Throwable $error) {
-            echo $error;
-            // $errors = $error->getMessages();
-            // if ($errors) {
-            //     $errorMessage = array_key_first($errors);
-            //     return \response()->withError($errorMessage); 
-            // }
+            $errors = $error->getMessages();
+            if ($errors) {
+                $errorMessage = array_key_first($errors);
+                return \response()->withError($errorMessage); 
+            }
 
-            // return \response()->withError();
+            return \response()->withError();
         }
     }
 

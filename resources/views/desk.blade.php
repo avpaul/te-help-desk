@@ -7,6 +7,16 @@
         <div class="ticket-section-header">
             <div>Not answered</div></div>
         <section class="pending-tickets">
+            @if(count($tickets) === 0)
+            <div class="no-ticket">
+                <div class="no-ticket-wrapper">
+                    <img src="{{asset('/conversation.svg')}}" />
+                </div>
+                <div class="no-ticket-tagline">
+                    No ticket opened yet!
+                </div>
+            </div>
+            @endif
             @foreach ($tickets as $ticket)
             <a class="ticket" href="/tickets/{{$ticket->id}}">
                 <div class="ticket-owner">
